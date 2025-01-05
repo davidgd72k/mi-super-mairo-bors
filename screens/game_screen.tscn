@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmsrkmeyka3nv"]
+
+[ext_resource type="Script" uid="uid://tcrahr83r522" path="res://screens/game_screen.gd" id="1_30aos"]
+[ext_resource type="PackedScene" uid="uid://b6p2ng3sf36u8" path="res://levels/level_1_1.tscn" id="1_daj5d"]
+[ext_resource type="PackedScene" uid="uid://bc5ienlfttcbd" path="res://game_objects/player.tscn" id="2_rxj4p"]
+[ext_resource type="Script" uid="uid://cwfqvxhcy1xo1" path="res://scripts/controllers/basic_camera_controller.gd" id="3_rxj4p"]
+
+[node name="GameScreen" type="Node2D"]
+script = ExtResource("1_30aos")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(896, 407)
+zoom = Vector2(0.5, 0.5)
+limit_left = 0
+limit_top = -100
+limit_bottom = 1080
+script = ExtResource("3_rxj4p")
+target = NodePath("../Player")
+
+[node name="Level1-1" parent="." instance=ExtResource("1_daj5d")]
+
+[node name="Player" parent="." instance=ExtResource("2_rxj4p")]
+position = Vector2(111, 794)
+jump_height = 500.0
+jump_time_to_peak = 0.6
+jump_time_to_descent = 0.35
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DataLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "aaaaaaa"

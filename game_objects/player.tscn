@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://bc5ienlfttcbd"]
+
+[ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
+[ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
+
+[sub_resource type="Animation" id="Animation_hy5qn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_a4hy7"]
+resource_name = "idle"
+length = 0.06667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_rpe43"]
+resource_name = "jump"
+length = 0.125013
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_7o085"]
+resource_name = "walk"
+length = 0.250012
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyg5a"]
+_data = {
+&"RESET": SubResource("Animation_hy5qn"),
+&"idle": SubResource("Animation_a4hy7"),
+&"jump": SubResource("Animation_rpe43"),
+&"walk": SubResource("Animation_7o085")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4hy7"]
+radius = 41.0
+height = 136.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 14
+script = ExtResource("1_a4hy7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_rpe43")
+hframes = 4
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pyg5a")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 25)
+shape = SubResource("CapsuleShape2D_a4hy7")

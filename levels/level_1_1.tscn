@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=4 uid="uid://b6p2ng3sf36u8"]
+
+[ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_igb7b"]
+[ext_resource type="Shader" uid="uid://d1i108wqmp4ok" path="res://shaders/color_tint.tres" id="2_s25dn"]
+[ext_resource type="Texture2D" uid="uid://cw2tdvflmkm0h" path="res://assets/art/backgrounds/bg_alhambra_granada.jpg" id="3_s25dn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36u8v"]
+texture = ExtResource("1_igb7b")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+0:2/0 = 0
+1:0/0 = 0
+1:1/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+0:5/0 = 0
+0:6/0 = 0
+0:7/0 = 0
+0:8/0 = 0
+0:9/0 = 0
+0:10/0 = 0
+0:11/0 = 0
+0:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 35, 37, -64, 64)
+0:12/0 = 0
+0:13/0 = 0
+0:14/0 = 0
+0:15/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_s25dn"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 0
+sources/0 = SubResource("TileSetAtlasSource_36u8v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
+shader = ExtResource("2_s25dn")
+shader_parameter/ColorTint = Color(0.233925, 0.233925, 0.233925, 1)
+
+[node name="Level1-1" type="Node2D"]
+
+[node name="TilesGround" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAcAAAAAAAEAAAABAAcAAAAAAAEAAAACAAcAAAAAAAEAAAADAAcAAAAAAAEAAAAEAAcAAAAAAAEAAAAFAAcAAAAAAAEAAAAGAAcAAAAAAAEAAAAHAAcAAAAAAAEAAAAIAAcAAAAAAAEAAAAJAAcAAAAAAAEAAAAKAAcAAAAAAAEAAAALAAcAAAAAAAEAAAAMAAcAAAAAAAEAAAANAAcAAAAAAAEAAAAOAAcAAAAAAAEAAAAAAAgAAAABAAAAAAABAAgAAAABAAAAAAACAAgAAAABAAAAAAADAAgAAAABAAAAAAAEAAgAAAABAAAAAAAFAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAgAAAABAAAAAAAIAAgAAAABAAAAAAAJAAgAAAABAAAAAAAKAAgAAAABAAAAAAALAAgAAAABAAAAAAAMAAgAAAABAAAAAAANAAgAAAABAAAAAAAOAAgAAAABAAAAAAAPAAcAAAAAAAsAAAABAAkAAAABAAAAAAAAAAkAAAABAAAAAAACAAkAAAABAAAAAAADAAkAAAABAAAAAAAEAAkAAAABAAAAAAAFAAkAAAABAAAAAAAGAAkAAAABAAAAAAAHAAkAAAABAAAAAAAIAAkAAAABAAAAAAAJAAkAAAABAAAAAAAKAAkAAAABAAAAAAALAAkAAAABAAAAAAAMAAkAAAABAAAAAAANAAkAAAABAAAAAAAOAAkAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_s25dn")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Fondo" type="TextureRect" parent="ParallaxBackground"]
+material = SubResource("ShaderMaterial_k8h3m")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_s25dn")
