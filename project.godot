@@ -23,6 +23,11 @@ GlobalVar="*res://global/global_var.tscn"
 
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/mjpeg_quality=0.8
+movie_writer/movie_file="C:/Users/David/Documents/Godot4_repo/movie_writer_clips/clip_mysmb.avi"
+
 [file_customization]
 
 folder_colors={

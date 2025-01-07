@@ -36,7 +36,7 @@ sources/0 = SubResource("TileSetAtlasSource_36u8v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
 shader = ExtResource("2_s25dn")
-shader_parameter/ColorTint = Color(0.233925, 0.233925, 0.233925, 1)
+shader_parameter/ColorTint = Color(0.191032, 0.0357665, 0.64623, 1)
 
 [node name="Level1-1" type="Node2D"]
 
@@ -48,6 +48,13 @@ tile_set = SubResource("TileSet_s25dn")
 
 [node name="Fondo" type="TextureRect" parent="ParallaxBackground"]
 material = SubResource("ShaderMaterial_k8h3m")
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 94.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("3_s25dn")
+expand_mode = 2
+stretch_mode = 4
