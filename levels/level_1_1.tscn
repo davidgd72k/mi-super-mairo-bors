@@ -41,7 +41,8 @@ sources/0 = SubResource("TileSetAtlasSource_36u8v")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
 shader = ExtResource("2_s25dn")
-shader_parameter/ColorTint = Color(0.372627, 0.409847, 0.844558, 1)
+shader_parameter/ColorTint = Color(0.0625037, 0.571204, 0.621884, 1)
+shader_parameter/ColorFogTint = Color(0.928992, 0.622418, 0.524559, 1)
 
 [node name="Level1-1" type="Node2D"]
 

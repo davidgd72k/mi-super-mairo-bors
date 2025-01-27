@@ -11,3 +11,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	data_label.text = "GRAV_SPEED: " + str(player.velocity.y)
+
+
+func _physics_process(delta: float) -> void:
+	if (player.position.y > 1300):
+		player.position = Vector2(10, 10)
