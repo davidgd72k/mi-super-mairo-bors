@@ -39,7 +39,7 @@ folder_colors={
 "res://levels/": "teal",
 "res://materials/": "purple",
 "res://screens/": "teal",
-"res://scripts/": "teal",
+"res://scripts/": "blue",
 "res://shaders/": "orange"
 }
 

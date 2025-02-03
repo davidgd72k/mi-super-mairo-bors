@@ -21,7 +21,7 @@ parameter_name = "ColorFogTint"
 default_value_enabled = true
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_j8gxn"]
-size = Vector2(1452.04, 804.7)
+size = Vector2(1452.04, 804.699)
 title = "Color fog tint"
 attached_nodes = PackedInt32Array(16, 15, 9)
 
@@ -122,7 +122,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-35.7522, 16.9548)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1612.01, 463.08)

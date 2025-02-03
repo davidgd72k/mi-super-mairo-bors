@@ -1,7 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bc5ienlfttcbd"]
+[gd_scene load_steps=15 format=3 uid="uid://bc5ienlfttcbd"]
 
 [ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
 [ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
+[ext_resource type="Script" uid="uid://cp6h5boss5c4m" path="res://scripts/state_machine/core/state_machine.gd" id="3_7o085"]
+[ext_resource type="Script" uid="uid://wspkdqe4lu5" path="res://scripts/state_machine/player_states/idle.gd" id="4_pyg5a"]
+[ext_resource type="Script" uid="uid://b8sdiiq27p1ay" path="res://scripts/state_machine/player_states/running.gd" id="5_mq4jh"]
+[ext_resource type="Script" uid="uid://buhdrb4wkud2f" path="res://scripts/state_machine/player_states/jumping.gd" id="5_pyg5a"]
+[ext_resource type="Script" uid="uid://bn5ssf3bhug42" path="res://scripts/state_machine/player_states/falling.gd" id="7_jg8jt"]
+[ext_resource type="Script" uid="uid://bhuooup21hsqh" path="res://scripts/state_machine/player_states/hold_fall.gd" id="8_7rdht"]
 
 [sub_resource type="Animation" id="Animation_hy5qn"]
 length = 0.001
@@ -84,6 +90,7 @@ height = 136.0
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_a4hy7")
+peak_time = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rpe43")
@@ -98,3 +105,22 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 25)
 shape = SubResource("CapsuleShape2D_a4hy7")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_7o085")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("4_pyg5a")
+
+[node name="Running" type="Node" parent="StateMachine"]
+script = ExtResource("5_mq4jh")
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("5_pyg5a")
+
+[node name="Falling" type="Node" parent="StateMachine"]
+script = ExtResource("7_jg8jt")
+
+[node name="HoldFall" type="Node" parent="StateMachine"]
+script = ExtResource("8_7rdht")

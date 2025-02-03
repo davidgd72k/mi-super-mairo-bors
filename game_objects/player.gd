@@ -13,10 +13,6 @@ class_name Player extends CharacterBody2D
 ## Velocidad horizontal.
 @export var horizontal_speed: float = 400.0
 
-# Player nodes.
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $Sprite2D
-
 # Time-based gravity vars.
 var jump_velocity: float = 0
 var jump_gravity: float = 0
@@ -29,10 +25,14 @@ var you_must_falling: bool = false
 var peak_height: float = 0
 var jumping: bool = false
 
+# Player nodes.
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var fsm: StateMachine = $StateMachine
+
 
 func _ready() -> void:
 	animation_player.play("idle")
-	
 	peak_timer = Timer.new()
 	peak_timer.wait_time = peak_time
 	peak_timer.one_shot = true
@@ -47,41 +47,33 @@ func _process(delta: float) -> void:
 	decide_animation()
 
 func _physics_process(delta: float) -> void:
-	# Apply time-based gravity.
-	if not is_on_floor():
-		velocity.y += get_own_gravity() * delta
-		
-		if in_peak and not you_must_falling:
-			velocity.y = 0
-	elif is_on_floor():
-		you_must_falling = false
-		jumping = false
+	pass
 	
-	if is_peak_height_reach() and not in_peak and not you_must_falling:
-		print("alcanzas la altura peak")
-		peak_timer.start()
-		in_peak = true
-		
-		
-
-	# Handle jumping from the ground.
-	if Input.is_action_just_pressed("b_a") and is_on_floor():
-		jump()
-
-	# Horizontal movement logic.
-	var direction := Input.get_axis("d_left", "d_right")
-	if direction:
-		var my_speed := horizontal_speed
-		
-		if Input.is_action_pressed("b_b") and is_on_floor():
-			my_speed *= 2
-		
-		velocity.x = horizontal_moving(direction, my_speed)
-		sprite_2d.flip_h = velocity.x < 0
-	else:
-		velocity.x = move_toward(velocity.x, 0, horizontal_speed)
-
-	move_and_slide()
+	#if is_peak_height_reach() and not in_peak and not you_must_falling:
+		#print("alcanzas la altura peak")
+		#peak_timer.start()
+		#in_peak = true
+		#
+		#
+#
+	## Handle jumping from the ground.
+	#if Input.is_action_just_pressed("b_a") and is_on_floor():
+		#jump()
+#
+	## Horizontal movement logic.
+	#var direction := Input.get_axis("d_left", "d_right")
+	#if direction:
+		#var my_speed := horizontal_speed
+		#
+		#if Input.is_action_pressed("b_b") and is_on_floor():
+			#my_speed *= 2
+		#
+		#velocity.x = horizontal_moving(direction, my_speed)
+		#sprite_2d.flip_h = velocity.x < 0
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, horizontal_speed)
+#
+	#move_and_slide()
 
 
 func _peak_timer_timeout():
@@ -98,9 +90,6 @@ func decide_animation():
 		else:
 			animation_player.play("idle")
 
-		
-	pass
-
 ## Apply horizontal movement to player character.
 func horizontal_moving(direction: float, speed: float) -> float:
 	return direction * speed
@@ -116,7 +105,7 @@ func jump():
 	peak_height = get_peak_height()
 	velocity.y = jump_velocity
 
-## Get gravity based on timing (both in jumping and falling.
+## Get gravity based on timing (both in jumping and falling).
 func get_own_gravity() -> float:
 	var own_gravity = jump_gravity if velocity.y < 0.0 else fall_gravity
 	return own_gravity

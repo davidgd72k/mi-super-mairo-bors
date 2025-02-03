@@ -35,3 +35,8 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "aaaaaaa"
+
+[node name="StateLabel" type="Label" parent="CanvasLayer"]
+offset_top = 29.0
+offset_right = 40.0
+offset_bottom = 52.0
