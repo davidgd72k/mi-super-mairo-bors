@@ -34,7 +34,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 	holding_timer.autostart = true
 	holding_timer.one_shot = true
 	add_child(holding_timer)
-	holding_timer.start()
 	holding_timer.timeout.connect(holding_time_timeout)
 
 
