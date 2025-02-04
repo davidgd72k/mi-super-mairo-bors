@@ -29,7 +29,8 @@ func holding_time_timeout():
 ## is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(previous_state_path: String, data := {}) -> void:
 	holding_timer = Timer.new()
-	holding_timer.wait_time = player.peak_time
+	var holding_time: float = data["cutted_jump"] if data.has("cutted_jump") else player.peak_time
+	holding_timer.wait_time = holding_time
 	holding_timer.autostart = true
 	holding_timer.one_shot = true
 	add_child(holding_timer)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b6p2ng3sf36u8"]
+[gd_scene load_steps=10 format=4 uid="uid://b6p2ng3sf36u8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_igb7b"]
 [ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_s25dn"]
@@ -45,14 +45,17 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_k8h3m"]
 gradient = SubResource("Gradient_s25dn")
-fill_from = Vector2(0, 0.952174)
-fill_to = Vector2(0, 0.608696)
+fill_from = Vector2(0, 0.904348)
+fill_to = Vector2(0, 0.53913)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
 shader = ExtResource("2_s25dn")
-shader_parameter/TexTint = Color(0.714743, 1, 0.916602, 1)
+shader_parameter/TexTint = Color(0, 0, 0.917647, 1)
 shader_parameter/GradTint = Color(1, 0.704286, 0.409636, 1)
 shader_parameter/GradientTex = SubResource("GradientTexture2D_k8h3m")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s25dn"]
+size = Vector2(221, 1293)
 
 [node name="Level1-1" type="Node2D"]
 
@@ -67,9 +70,9 @@ material = SubResource("ShaderMaterial_k8h3m")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -70.0
+offset_top = -91.0
 offset_right = -2.0
-offset_bottom = 31.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_s25dn")
@@ -78,3 +81,11 @@ stretch_mode = 4
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(220, 311)
+
+[node name="LeftLimitWall" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLimitWall"]
+position = Vector2(-80.5, 636.5)
+shape = SubResource("RectangleShape2D_s25dn")
