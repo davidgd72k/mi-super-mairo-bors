@@ -17,14 +17,15 @@ limit_bottom = 1080
 script = ExtResource("3_rxj4p")
 target = NodePath("../Player")
 
-[node name="Level1-1" parent="." instance=ExtResource("1_daj5d")]
+[node name="CurrentLevel" parent="." instance=ExtResource("1_daj5d")]
 
 [node name="Player" parent="." instance=ExtResource("2_rxj4p")]
 position = Vector2(111, 794)
-jump_height = 500.0
+jump_height = 600.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.29
 peak_time = 0.15
+horizontal_speed = 800.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

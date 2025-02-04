@@ -4,7 +4,7 @@
 expanded_output_ports = [0]
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_q6bo8"]
-size = Vector2(644, 432)
+size = Vector2(644, 243.366)
 title = "Color tint"
 tint_color_enabled = true
 tint_color = Color(0.227451, 0.623346, 0.941176, 0.568627)

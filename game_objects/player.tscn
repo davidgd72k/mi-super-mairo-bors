@@ -90,6 +90,7 @@ height = 136.0
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 script = ExtResource("1_a4hy7")
+jump_height = 200.0
 peak_time = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

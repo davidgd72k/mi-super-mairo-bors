@@ -6,7 +6,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 func physics_update(delta: float) -> void:
 	var input_direction_x := Input.get_axis("d_left", "d_right")
-
+	
+	player.velocity.x = input_direction_x * player.horizontal_speed
 	player.velocity.y += player.get_own_gravity() * delta
 	player.move_and_slide()
 	

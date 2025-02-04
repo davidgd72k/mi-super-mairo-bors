@@ -17,4 +17,4 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	if (player.position.y > 1300):
-		player.position = Vector2(10, 10)
+		player.global_position = $CurrentLevel/Respawn.global_position

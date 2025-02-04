@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://b6p2ng3sf36u8"]
+[gd_scene load_steps=9 format=4 uid="uid://b6p2ng3sf36u8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_igb7b"]
-[ext_resource type="Shader" uid="uid://b1wx7d24575j6" path="res://shaders/y_based_recolor.tres" id="2_s25dn"]
+[ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_s25dn"]
 [ext_resource type="Texture2D" uid="uid://cw2tdvflmkm0h" path="res://assets/art/backgrounds/bg_alhambra_granada.jpg" id="3_s25dn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36u8v"]
@@ -39,10 +39,19 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_36u8v")
 
+[sub_resource type="Gradient" id="Gradient_s25dn"]
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_k8h3m"]
+gradient = SubResource("Gradient_s25dn")
+fill_from = Vector2(0, 0.678261)
+fill_to = Vector2(0, 0.9)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
 shader = ExtResource("2_s25dn")
-shader_parameter/ColorTint = Color(0.394682, 0.676843, 0.973302, 1)
-shader_parameter/ColorFogTint = Color(0.928992, 0.622418, 0.524559, 1)
+shader_parameter/TexTint = Color(0.709421, 0.890805, 0.995768, 1)
+shader_parameter/GradTint = Color(1, 1, 1, 1)
+shader_parameter/GradientTex = SubResource("GradientTexture2D_k8h3m")
 
 [node name="Level1-1" type="Node2D"]
 
@@ -64,3 +73,6 @@ grow_vertical = 2
 texture = ExtResource("3_s25dn")
 expand_mode = 2
 stretch_mode = 4
+
+[node name="Respawn" type="Marker2D" parent="."]
+position = Vector2(220, 311)
