@@ -40,17 +40,18 @@ physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_36u8v")
 
 [sub_resource type="Gradient" id="Gradient_s25dn"]
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+interpolation_mode = 2
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_k8h3m"]
 gradient = SubResource("Gradient_s25dn")
-fill_from = Vector2(0, 0.678261)
-fill_to = Vector2(0, 0.9)
+fill_from = Vector2(0, 0.952174)
+fill_to = Vector2(0, 0.608696)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
 shader = ExtResource("2_s25dn")
-shader_parameter/TexTint = Color(0.709421, 0.890805, 0.995768, 1)
-shader_parameter/GradTint = Color(1, 1, 1, 1)
+shader_parameter/TexTint = Color(0.714743, 1, 0.916602, 1)
+shader_parameter/GradTint = Color(1, 0.704286, 0.409636, 1)
 shader_parameter/GradientTex = SubResource("GradientTexture2D_k8h3m")
 
 [node name="Level1-1" type="Node2D"]
@@ -66,8 +67,9 @@ material = SubResource("ShaderMaterial_k8h3m")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 94.0
-offset_bottom = 101.0
+offset_top = -70.0
+offset_right = -2.0
+offset_bottom = 31.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_s25dn")

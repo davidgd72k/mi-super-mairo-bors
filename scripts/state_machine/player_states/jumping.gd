@@ -11,7 +11,7 @@ func physics_update(delta: float) -> void:
 	player.velocity.x = player.horizontal_speed * input_direction_x
 	player.velocity.y += player.get_own_gravity() * delta
 
-	if player.velocity.y >= 0.0:
+	if player.velocity.y >= 0.0 or Input.is_action_just_released("b_a"):
 		print("QUIERES ENTRAR AQUÍ?!")
 		finished.emit(HOLDING_FALL)
 	
