@@ -11,7 +11,7 @@ class_name Player extends CharacterBody2D
 @export var peak_time: float = 0.5
 @export_group("Horizontal movement")
 ## Velocidad horizontal.
-@export var horizontal_speed: float = 400.0
+@export var running_speed: float = 400.0
 
 # Time-based gravity vars.
 var jump_velocity: float = 0
@@ -42,42 +42,28 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	pass
 
+#region Coyote time.
+
+#endregion
 
 
-
-
-func decide_animation():
-	if jumping:
-		animation_player.play("jump")
-	else:
-		if velocity.length() > 0:
-			animation_player.play("walk")
-		else:
-			animation_player.play("idle")
 
 ## Apply horizontal movement to player character.
 func horizontal_moving(direction: float, speed: float) -> float:
 	return direction * speed
 
-func is_peak_height_reach() -> bool:
-	return self.global_position.y <= peak_height - 50
-
 
 #region Time-based jump logic.
 ## Apply jump impulse to player character.
 func jump():
-	peak_height = get_peak_height()
 	velocity.y = jump_velocity
+
 
 ## Get gravity based on timing (both in jumping and falling).
 func get_own_gravity() -> float:
 	var own_gravity = jump_gravity if velocity.y < 0.0 else fall_gravity
 	return own_gravity
 
-func get_peak_height() -> float:
-	var old_height: float = self.global_position.y
-	# HACK: cambia ese número mágico por una variable export.
-	return old_height - jump_height
 
 ## Redefine variables used for time-based gravity 
 ## (recommended call this for any change in him implied variables).

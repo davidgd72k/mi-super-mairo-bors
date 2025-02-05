@@ -10,7 +10,7 @@ func physics_update(delta: float) -> void:
 	
 	decide_sprite_side(input_direction_x)
 	
-	player.velocity.x = player.horizontal_speed * input_direction_x
+	player.velocity.x = player.running_speed * input_direction_x
 	player.velocity.y += player.get_own_gravity() * delta
 	player.move_and_slide()
 

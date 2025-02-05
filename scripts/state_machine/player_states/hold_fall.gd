@@ -15,7 +15,7 @@ func update(_delta: float) -> void:
 ## Called by the state machine on the engine's physics update tick.
 func physics_update(_delta: float) -> void:
 	var input_x_dir := Input.get_axis("d_left", "d_right")
-	player.velocity.x = player.horizontal_speed * input_x_dir
+	player.velocity.x = player.running_speed * input_x_dir
 	player.velocity.y = 0.0
 	player.move_and_slide()
 		

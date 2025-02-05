@@ -24,8 +24,7 @@ position = Vector2(111, 794)
 jump_height = 600.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.29
-peak_time = 1.0
-horizontal_speed = 800.0
+peak_time = 0.2
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
