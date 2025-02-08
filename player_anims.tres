@@ -1,0 +1,56 @@
+[gd_resource type="AnimationNodeBlendTree" load_steps=12 format=3 uid="uid://ctgte7ml2y8ae"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_7rdht"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfs5t"]
+animation = &"fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pbirh"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghwos"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twgr7"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pdcc7"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ieevb"]
+animation = &"recovering_from_fall"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ki4sl"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ruxeo"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_vp544"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ojauy"]
+
+[resource]
+graph_offset = Vector2(-193.036, -10.843)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_7rdht")
+nodes/Add2/position = Vector2(942.971, 706.356)
+nodes/AnimFall/node = SubResource("AnimationNodeAnimation_xfs5t")
+nodes/AnimFall/position = Vector2(574.384, 386.188)
+nodes/AnimIdle/node = SubResource("AnimationNodeAnimation_pbirh")
+nodes/AnimIdle/position = Vector2(-203.608, -102.454)
+nodes/AnimJump/node = SubResource("AnimationNodeAnimation_ghwos")
+nodes/AnimJump/position = Vector2(250.192, 372.371)
+nodes/AnimWalk/node = SubResource("AnimationNodeAnimation_twgr7")
+nodes/AnimWalk/position = Vector2(-158.24, 361.737)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_ieevb")
+nodes/Animation/position = Vector2(622.755, 601.286)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_pdcc7")
+"nodes/Animation 2/position" = Vector2(608.996, 815.179)
+nodes/BlendFall/node = SubResource("AnimationNodeBlend2_ki4sl")
+nodes/BlendFall/position = Vector2(768.114, 113.755)
+nodes/BlendJump/node = SubResource("AnimationNodeBlend2_ruxeo")
+nodes/BlendJump/position = Vector2(416.404, 113.698)
+nodes/BlendRecoverFallIdle/node = SubResource("AnimationNodeBlend2_vp544")
+nodes/BlendRecoverFallIdle/position = Vector2(1240.64, 169.406)
+nodes/BlendWalk/node = SubResource("AnimationNodeBlend2_ojauy")
+nodes/BlendWalk/position = Vector2(60.8652, 114.916)
+nodes/output/position = Vector2(1764.77, 231.718)
+node_connections = [&"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2", &"BlendFall", 0, &"BlendJump", &"BlendFall", 1, &"AnimFall", &"BlendJump", 0, &"BlendWalk", &"BlendJump", 1, &"AnimJump", &"BlendRecoverFallIdle", 0, &"BlendFall", &"BlendRecoverFallIdle", 1, &"Add2", &"BlendWalk", 0, &"AnimIdle", &"BlendWalk", 1, &"AnimWalk", &"output", 0, &"BlendRecoverFallIdle"]

@@ -2,9 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_igb7b"]
 [ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_s25dn"]
-[ext_resource type="Texture2D" uid="uid://cw2tdvflmkm0h" path="res://assets/art/backgrounds/bg_alhambra_granada.jpg" id="3_s25dn"]
+[ext_resource type="Texture2D" uid="uid://0fw328hnvu06" path="res://assets/art/backgrounds/bg_dawn_charles_v_alhambra_granada.jpg" id="3_s25dn"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_36u8v"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s25dn"]
 texture = ExtResource("1_igb7b")
 texture_region_size = Vector2i(128, 128)
 0:0/0 = 0
@@ -37,7 +37,7 @@ texture_region_size = Vector2i(128, 128)
 tile_size = Vector2i(128, 128)
 physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
-sources/0 = SubResource("TileSetAtlasSource_36u8v")
+sources/0 = SubResource("TileSetAtlasSource_s25dn")
 
 [sub_resource type="Gradient" id="Gradient_s25dn"]
 interpolation_mode = 2
@@ -50,7 +50,7 @@ fill_to = Vector2(0, 0.456522)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k8h3m"]
 shader = ExtResource("2_s25dn")
-shader_parameter/TexTint = Color(0, 0.671914, 0.758262, 1)
+shader_parameter/TexTint = Color(0.756166, 0.617336, 0.799738, 1)
 shader_parameter/GradTint = Color(1, 0.704286, 0.409636, 1)
 shader_parameter/GradientTex = SubResource("GradientTexture2D_k8h3m")
 
@@ -70,14 +70,16 @@ material = SubResource("ShaderMaterial_k8h3m")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -58.0
-offset_right = -2.0
-offset_bottom = 43.0
+offset_left = -3.0
+offset_top = -20.0
+offset_right = 101.0
+offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_s25dn")
 expand_mode = 2
 stretch_mode = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="Respawn" type="Marker2D" parent="."]
 position = Vector2(220, 311)

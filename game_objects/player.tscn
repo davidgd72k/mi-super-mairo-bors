@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bc5ienlfttcbd"]
+[gd_scene load_steps=31 format=3 uid="uid://bc5ienlfttcbd"]
 
 [ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
 [ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
@@ -51,18 +51,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_a4hy7"]
 resource_name = "idle"
@@ -108,6 +96,22 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(0.8, 1.5), Vector2(1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_xfs5t"]
+resource_name = "recovering_from_fall"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.1), Vector2(1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_7o085"]
 resource_name = "walk"
 length = 0.250012
@@ -132,8 +136,79 @@ _data = {
 &"fall": SubResource("Animation_7rdht"),
 &"idle": SubResource("Animation_a4hy7"),
 &"jump": SubResource("Animation_rpe43"),
+&"recovering_from_fall": SubResource("Animation_xfs5t"),
 &"walk": SubResource("Animation_7o085")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7rdht"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfs5t"]
+animation = &"recovering_from_fall"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_pbirh"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ghwos"]
+graph_offset = Vector2(-540.193, -28.4661)
+nodes/BaseAnim/node = SubResource("AnimationNodeAnimation_7rdht")
+nodes/BaseAnim/position = Vector2(-104, 156)
+nodes/Fall/node = SubResource("AnimationNodeAnimation_xfs5t")
+nodes/Fall/position = Vector2(-192.109, 376.769)
+nodes/FromFalling/node = SubResource("AnimationNodeAdd2_pbirh")
+nodes/FromFalling/position = Vector2(111.359, 151.83)
+nodes/output/position = Vector2(310.89, 179.04)
+node_connections = [&"FromFalling", 0, &"BaseAnim", &"FromFalling", 1, &"Fall", &"output", 0, &"FromFalling"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_twgr7"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pdcc7"]
+animation = &"recovering_from_fall"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_7rdht"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ieevb"]
+graph_offset = Vector2(-336, -29)
+nodes/Base/node = SubResource("AnimationNodeAnimation_twgr7")
+nodes/Base/position = Vector2(-61.54, 104.68)
+nodes/Fall/node = SubResource("AnimationNodeAnimation_pdcc7")
+nodes/Fall/position = Vector2(-62, 315)
+nodes/FromFalling/node = SubResource("AnimationNodeAdd2_7rdht")
+nodes/FromFalling/position = Vector2(219.01, 154.88)
+nodes/output/position = Vector2(469.4, 198.4)
+node_connections = [&"FromFalling", 0, &"Base", &"FromFalling", 1, &"Fall", &"output", 0, &"FromFalling"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pbirh"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghwos"]
+animation = &"recovering_from_fall"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_twgr7"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_pdcc7"]
+graph_offset = Vector2(-316.381, 71.9039)
+nodes/Base/node = SubResource("AnimationNodeAnimation_pbirh")
+nodes/Base/position = Vector2(-37.1161, 144.515)
+nodes/Fall/node = SubResource("AnimationNodeAnimation_ghwos")
+nodes/Fall/position = Vector2(3.37976, 372.615)
+nodes/FromFalling/node = SubResource("AnimationNodeAdd2_twgr7")
+nodes/FromFalling/position = Vector2(297.619, 265.904)
+nodes/output/position = Vector2(508, 236)
+node_connections = [&"FromFalling", 0, &"Base", &"FromFalling", 1, &"Fall", &"output", 0, &"FromFalling"]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ki4sl"]
+blend_point_0/node = SubResource("AnimationNodeBlendTree_ghwos")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeBlendTree_ieevb")
+blend_point_1/pos = 0.1
+blend_point_2/node = SubResource("AnimationNodeBlendTree_pdcc7")
+blend_point_2/pos = -0.1
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ruxeo"]
+states/InGround/node = SubResource("AnimationNodeBlendSpace1D_ki4sl")
+states/InGround/position = Vector2(446, 100)
+graph_offset = Vector2(36, -145)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4hy7"]
 radius = 41.0
@@ -146,7 +221,9 @@ jump_height = 200.0
 peak_time = 2.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 46)
 texture = ExtResource("1_rpe43")
+offset = Vector2(0, -74)
 hframes = 4
 vframes = 2
 
@@ -155,8 +232,17 @@ libraries = {
 &"": SubResource("AnimationLibrary_pyg5a")
 }
 
+[node name="AnimationTree" type="AnimationTree" parent="."]
+deterministic = false
+tree_root = SubResource("AnimationNodeStateMachine_ruxeo")
+anim_player = NodePath("../AnimationPlayer")
+parameters/InGround/blend_position = 0.000786781
+parameters/InGround/0/FromFalling/add_amount = 0.0
+parameters/InGround/1/FromFalling/add_amount = 0
+parameters/InGround/2/FromFalling/add_amount = 0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 25)
+position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_a4hy7")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -177,3 +263,5 @@ script = ExtResource("7_jg8jt")
 
 [node name="HoldFall" type="Node" parent="StateMachine"]
 script = ExtResource("8_7rdht")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine/Idle" method="_on_animation_player_animation_finished"]
