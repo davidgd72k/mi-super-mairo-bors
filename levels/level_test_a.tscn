@@ -50,8 +50,8 @@ fill_to = Vector2(0, 0.456522)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o7qbj"]
 shader = ExtResource("2_x4lo5")
-shader_parameter/TexTint = Color(0.756166, 0.617336, 0.799738, 1)
-shader_parameter/GradTint = Color(1, 0.704286, 0.409636, 1)
+shader_parameter/TexTint = Color(0.772549, 0.909804, 0.596078, 1)
+shader_parameter/GradTint = Color(0.027451, 0.4, 0.678431, 1)
 shader_parameter/GradientTex = SubResource("GradientTexture2D_k8h3m")
 
 [node name="LevelTestA" type="Node2D"]

@@ -1,8 +1,13 @@
 extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.animation_player.play("fall")
+	player.animation_tree["parameters/playback"].travel("Fall")
+	pass
 	
+func do_anim():
+	var anima_tree := player.animation_tree
+	
+
 	
 func physics_update(delta: float) -> void:
 	var input_direction_x := Input.get_axis("d_left", "d_right")

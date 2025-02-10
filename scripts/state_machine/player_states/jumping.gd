@@ -2,8 +2,9 @@ extends PlayerState
 
 
 func enter(previous_state_path: String, data := {}) -> void:
-	#player.animation_tree["parameters/playback"].travel("jump")
+	player.animation_tree["parameters/playback"].travel("Jump")
 	player.jump()
+	
 
 
 func physics_update(delta: float) -> void:
