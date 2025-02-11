@@ -2,19 +2,27 @@ extends PlayerState
 
 
 func enter(previous_state_path: String, data := {}) -> void:
-	print("empezamos quietos")
 	player.velocity.x = 0.0
 	
-	var state_machine = player.animation_tree["parameters/playback"]
-	state_machine.travel("Idle")
+	#var state_machine = player.animation_tree["parameters/playback"]
+	#state_machine.travel("Idle")
+	player.animation_tree["parameters/playback"].travel("Idle")
 	
-	apply_falling_effect_to_anim(previous_state_path == FALLING)
+	#do_recovering_animation(previous_state_path == FALLING)
 		
 
 func apply_falling_effect_to_anim(applying: bool):
 	var anima_tree: AnimationTree = player.animation_tree
 	anima_tree.set("parameters/Idle/AddFall/add_amount", 1.0 if applying else 0.0)
 
+func do_recovering_animation(applying: bool):
+	var state_machine = player.animation_tree["parameters/playback"]
+	if applying:
+		state_machine.travel("Idle")
+	else:
+		state_machine.travel("Recovering")
+		state_machine.travel("Idle")
+	
 func physics_update(_delta: float) -> void:
 	#player.velocity.y += player.get_gravity().y * _delta
 	player.move_and_slide()

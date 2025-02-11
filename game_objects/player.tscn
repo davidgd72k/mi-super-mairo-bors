@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bc5ienlfttcbd"]
+[gd_scene load_steps=38 format=3 uid="uid://bc5ienlfttcbd"]
 
 [ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
 [ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
@@ -144,6 +144,7 @@ _data = {
 animation = &"fall"
 
 [sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_7rdht"]
+filters = ["Sprite2D:scale"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pbirh"]
 animation = &"idle"
@@ -152,7 +153,7 @@ animation = &"idle"
 animation = &"recovering_from_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_7rdht"]
-graph_offset = Vector2(-524.107, 6.88805)
+graph_offset = Vector2(-673.833, 99.9933)
 nodes/AddFall/node = SubResource("AnimationNodeAdd2_7rdht")
 nodes/AddFall/position = Vector2(100, 160)
 nodes/Base/node = SubResource("AnimationNodeAnimation_pbirh")
@@ -160,6 +161,34 @@ nodes/Base/position = Vector2(-164.695, 138.981)
 nodes/Fall/node = SubResource("AnimationNodeAnimation_twgr7")
 nodes/Fall/position = Vector2(-180, 340)
 node_connections = [&"AddFall", 0, &"Base", &"AddFall", 1, &"Fall", &"output", 0, &"AddFall"]
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_pbirh"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ghwos"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ki4sl"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ruxeo"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vp544"]
+animation = &"recovering_from_fall"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ojauy"]
+graph_offset = Vector2(-547.02, 7.30531)
+nodes/AddFall/node = SubResource("AnimationNodeAdd2_pbirh")
+nodes/AddFall/position = Vector2(385.881, 197.088)
+nodes/BlendWalking/node = SubResource("AnimationNodeBlend2_ghwos")
+nodes/BlendWalking/position = Vector2(95.381, 90.588)
+nodes/Idle/node = SubResource("AnimationNodeAnimation_ki4sl")
+nodes/Idle/position = Vector2(-224.513, 90.7692)
+nodes/Moving/node = SubResource("AnimationNodeAnimation_ruxeo")
+nodes/Moving/position = Vector2(-220, 300)
+nodes/Recovering/node = SubResource("AnimationNodeAnimation_vp544")
+nodes/Recovering/position = Vector2(86, 383)
+nodes/output/position = Vector2(592, 206)
+node_connections = [&"AddFall", 0, &"BlendWalking", &"AddFall", 1, &"Recovering", &"BlendWalking", 0, &"Idle", &"BlendWalking", 1, &"Moving", &"output", 0, &"AddFall"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfs5t"]
 animation = &"jump"
@@ -173,7 +202,6 @@ animation = &"walk"
 animation = &"recovering_from_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ki4sl"]
-graph_offset = Vector2(-951.353, 417.566)
 nodes/AddFall/node = SubResource("AnimationNodeAdd2_xfs5t")
 nodes/AddFall/position = Vector2(-420, 580)
 nodes/Base/node = SubResource("AnimationNodeAnimation_pdcc7")
@@ -183,35 +211,29 @@ nodes/Recover/position = Vector2(-760, 720)
 nodes/output/position = Vector2(-140, 640)
 node_connections = [&"AddFall", 0, &"Base", &"AddFall", 1, &"Recover", &"output", 0, &"AddFall"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_twgr7"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7rdht"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xfs5t"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pbirh"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ghwos"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pdcc7"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ieevb"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c40g2"]
+advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ki4sl"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ou0qc"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qamgl"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ruxeo"]
-states/End/position = Vector2(509, 226)
+states/End/position = Vector2(358, 239)
 states/Fall/node = SubResource("AnimationNodeAnimation_ghwos")
-states/Fall/position = Vector2(377, -14)
+states/Fall/position = Vector2(668, 37)
 states/Idle/node = SubResource("AnimationNodeBlendTree_7rdht")
-states/Idle/position = Vector2(377, 97)
+states/Idle/position = Vector2(1006, 20)
+states/InGround/node = SubResource("AnimationNodeBlendTree_ojauy")
+states/InGround/position = Vector2(452.459, 100)
 states/Jump/node = SubResource("AnimationNodeAnimation_xfs5t")
-states/Jump/position = Vector2(584, -14)
+states/Jump/position = Vector2(513, -51)
 states/Running/node = SubResource("AnimationNodeBlendTree_ki4sl")
-states/Running/position = Vector2(584, 99)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_twgr7"), "Idle", "Running", SubResource("AnimationNodeStateMachineTransition_7rdht"), "Running", "Idle", SubResource("AnimationNodeStateMachineTransition_xfs5t"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_pbirh"), "Running", "Jump", SubResource("AnimationNodeStateMachineTransition_ghwos"), "Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_pdcc7"), "Fall", "Idle", SubResource("AnimationNodeStateMachineTransition_ieevb"), "Fall", "Running", SubResource("AnimationNodeStateMachineTransition_ki4sl")]
-graph_offset = Vector2(-13.5412, -91)
+states/Running/position = Vector2(988, 100)
+transitions = ["Jump", "Fall", SubResource("AnimationNodeStateMachineTransition_pdcc7"), "Start", "InGround", SubResource("AnimationNodeStateMachineTransition_c40g2"), "InGround", "Jump", SubResource("AnimationNodeStateMachineTransition_ou0qc"), "Fall", "InGround", SubResource("AnimationNodeStateMachineTransition_qamgl")]
+graph_offset = Vector2(60.4588, -108)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a4hy7"]
 radius = 41.0
@@ -239,7 +261,9 @@ libraries = {
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_ruxeo")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Idle/AddFall/add_amount = 0
+parameters/Idle/AddFall/add_amount = 0.0
+parameters/InGround/AddFall/add_amount = 0.0
+parameters/InGround/BlendWalking/blend_amount = 0.0
 parameters/Running/AddFall/add_amount = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
