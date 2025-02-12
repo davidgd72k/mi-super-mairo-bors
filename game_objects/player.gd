@@ -81,5 +81,5 @@ func redefine_jumping_vars():
 #endregion
 
 func play_squashing_animation():
-	animation_tree.set("parameters/InGround/AddFall/add_amount", 1.0)
+	animation_tree.set("parameters/InGround/AddSquash/add_amount", 1.0)
 		

@@ -96,22 +96,6 @@ tracks/1/keys = {
 "values": [Vector2(1, 1), Vector2(1, 0.5), Vector2(0.8, 1.5), Vector2(1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_xfs5t"]
-resource_name = "recovering_from_fall"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(1.5, 0.1), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_7o085"]
 resource_name = "walk"
 length = 0.250012
@@ -130,13 +114,29 @@ tracks/0/keys = {
 "values": [2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_xfs5t"]
+resource_name = "recovering_from_fall"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.5, 0.1), Vector2(1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pyg5a"]
 _data = {
 &"RESET": SubResource("Animation_hy5qn"),
 &"fall": SubResource("Animation_7rdht"),
 &"idle": SubResource("Animation_a4hy7"),
 &"jump": SubResource("Animation_rpe43"),
-&"recovering_from_fall": SubResource("Animation_xfs5t"),
+&"squashing_fall": SubResource("Animation_xfs5t"),
 &"walk": SubResource("Animation_7o085")
 }
 
@@ -154,22 +154,22 @@ animation = &"idle"
 animation = &"walk"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vp544"]
-animation = &"recovering_from_fall"
+animation = &"squashing_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ojauy"]
-graph_offset = Vector2(-496.742, 39.1542)
-nodes/AddFall/node = SubResource("AnimationNodeAdd2_pbirh")
-nodes/AddFall/position = Vector2(385.881, 197.088)
+graph_offset = Vector2(-672.216, 35.9618)
+nodes/AddSquash/node = SubResource("AnimationNodeAdd2_pbirh")
+nodes/AddSquash/position = Vector2(385.881, 197.088)
 nodes/BlendWalking/node = SubResource("AnimationNodeBlend2_ghwos")
 nodes/BlendWalking/position = Vector2(95.381, 90.588)
 nodes/Idle/node = SubResource("AnimationNodeAnimation_ki4sl")
 nodes/Idle/position = Vector2(-224.513, 90.7692)
 nodes/Moving/node = SubResource("AnimationNodeAnimation_ruxeo")
 nodes/Moving/position = Vector2(-220, 300)
-nodes/Recovering/node = SubResource("AnimationNodeAnimation_vp544")
-nodes/Recovering/position = Vector2(86, 383)
+nodes/Squashing/node = SubResource("AnimationNodeAnimation_vp544")
+nodes/Squashing/position = Vector2(86, 383)
 nodes/output/position = Vector2(592, 206)
-node_connections = [&"AddFall", 0, &"BlendWalking", &"AddFall", 1, &"Recovering", &"BlendWalking", 0, &"Idle", &"BlendWalking", 1, &"Moving", &"output", 0, &"AddFall"]
+node_connections = [&"AddSquash", 0, &"BlendWalking", &"AddSquash", 1, &"Squashing", &"BlendWalking", 0, &"Idle", &"BlendWalking", 1, &"Moving", &"output", 0, &"AddSquash"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfs5t"]
 animation = &"jump"
@@ -220,7 +220,7 @@ libraries = {
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_ruxeo")
 anim_player = NodePath("../AnimationPlayer")
-parameters/InGround/AddFall/add_amount = 0.0
+parameters/InGround/AddSquash/add_amount = 0.0
 parameters/InGround/BlendWalking/blend_amount = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
