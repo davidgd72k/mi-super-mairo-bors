@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmsrkmeyka3nv"]
+[gd_scene load_steps=7 format=3 uid="uid://bmsrkmeyka3nv"]
 
 [ext_resource type="Script" uid="uid://tcrahr83r522" path="res://screens/game_screen.gd" id="1_30aos"]
 [ext_resource type="PackedScene" uid="uid://bc5ienlfttcbd" path="res://game_objects/player.tscn" id="2_rxj4p"]
 [ext_resource type="Script" uid="uid://cwfqvxhcy1xo1" path="res://scripts/controllers/basic_camera_controller.gd" id="3_rxj4p"]
 [ext_resource type="PackedScene" uid="uid://8kffwj1lwjj8" path="res://levels/level_test_a.tscn" id="4_30aos"]
+[ext_resource type="Shader" uid="uid://0x8756alrwjy" path="res://shaders/halftone_cmyk.gdshader" id="4_frmbi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_10oun"]
+shader = ExtResource("4_frmbi")
+shader_parameter/radius_c = -50.0
+shader_parameter/radius_m = -1.55
+shader_parameter/radius_y = 5.15
+shader_parameter/radius_k = 1.2
+shader_parameter/frequency = 400.0
 
 [node name="GameScreen" type="Node2D"]
 script = ExtResource("1_30aos")
@@ -21,10 +30,20 @@ target = NodePath("../Player")
 position = Vector2(173, 629)
 jump_height = 600.0
 jump_time_to_peak = 0.6
-jump_time_to_descent = 0.29
+jump_time_to_descent = 5.0
 peak_time = 0.2
+coyote_frames = 180
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ShaderRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_10oun")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="DataLabel" type="Label" parent="CanvasLayer"]
 offset_right = 40.0
@@ -39,4 +58,4 @@ offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 52.0
 
-[node name="LevelTestA" parent="." instance=ExtResource("4_30aos")]
+[node name="CurrentLevel" parent="." instance=ExtResource("4_30aos")]

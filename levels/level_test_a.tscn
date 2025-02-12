@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://8kffwj1lwjj8"]
+[gd_scene load_steps=10 format=4 uid="uid://8kffwj1lwjj8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_21n7v"]
 [ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_x4lo5"]
@@ -54,6 +54,8 @@ shader_parameter/TexTint = Color(0.772549, 0.909804, 0.596078, 1)
 shader_parameter/GradTint = Color(0.027451, 0.4, 0.678431, 1)
 shader_parameter/GradientTex = SubResource("GradientTexture2D_k8h3m")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iyxl2"]
+
 [node name="LevelTestA" type="Node2D"]
 
 [node name="TilesGround" type="TileMapLayer" parent="."]
@@ -77,3 +79,15 @@ texture = ExtResource("3_iyxl2")
 expand_mode = 2
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
+
+[node name="ShaderRect" type="ColorRect" parent="ParallaxBackground"]
+visible = false
+material = SubResource("ShaderMaterial_iyxl2")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Respawn" type="Marker2D" parent="."]
+position = Vector2(220, 311)

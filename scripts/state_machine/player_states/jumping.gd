@@ -4,6 +4,7 @@ extends PlayerState
 func enter(previous_state_path: String, data := {}) -> void:
 	player.animation_tree["parameters/playback"].travel("Jump")
 	player.jump()
+	player.coyote = false
 	
 
 

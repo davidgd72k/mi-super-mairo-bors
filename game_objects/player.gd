@@ -21,14 +21,17 @@ enum Anims {
 ## Velocidad horizontal.
 @export var running_speed: float = 400.0
 @export_group("Coyote Time")
-@export var coyote_frames: int = 1
+@export var coyote_frames: int = 6
 
 # Time-based gravity vars.
 var jump_velocity: float = 0
 var jump_gravity: float = 0
 var fall_gravity: float = 0
-var coyote_wait_time: float = 0
 
+# Coyote time related variables.
+var coyote := false
+var last_floor := false
+var jumping := false
 
 # Player nodes.
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -38,7 +41,8 @@ var coyote_wait_time: float = 0
 
 
 func _ready() -> void:
-	coyote_wait_time = coyote_frames / 60.0
+	$CoyoteTimer.wait_time = 5.0
+	#coyote_frames / 60.0
 	redefine_jumping_vars()
 
 
@@ -48,6 +52,7 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	pass
+
 
 #region Coyote time.
 
@@ -82,4 +87,7 @@ func redefine_jumping_vars():
 
 func play_squashing_animation():
 	animation_tree.set("parameters/InGround/AddSquash/add_amount", 1.0)
-		
+
+
+func _on_coyote_timer_timeout() -> void:
+	coyote = false
