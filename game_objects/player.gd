@@ -80,8 +80,6 @@ func redefine_jumping_vars():
 	fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 #endregion
 
-func redefine_anim_tree_values(anim_type: Anims):
-	match anim_type:
-		Anims.RecoverFall:
-			pass
+func play_squashing_animation():
+	animation_tree.set("parameters/InGround/AddFall/add_amount", 1.0)
 		

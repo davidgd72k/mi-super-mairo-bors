@@ -2,13 +2,12 @@ extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
 	player.animation_tree["parameters/playback"].travel("Fall")
-	pass
-	
 
-	
+
 func exit() -> void:
 	print("deberia chafarme contra el suelo")
-	player.animation_tree["parameters/playback"].travel("Recovering")
+	player.animation_tree["parameters/playback"].travel("InGround")
+	player.play_squashing_animation()
 
 	
 func physics_update(delta: float) -> void:

@@ -1,9 +1,8 @@
 extends PlayerState
 
 func enter(previous_state_path: String, data := {}) -> void:
-	player.animation_tree["parameters/playback"].travel("Running")
-	
-	#do_recovering_animation(previous_state_path == FALLING)
+	var anim_tree = player.animation_tree
+	anim_tree.set("parameters/InGround/BlendWalking/blend_amount", 1.0)
 	
 
 func physics_update(delta: float) -> void:
