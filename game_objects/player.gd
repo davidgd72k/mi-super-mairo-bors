@@ -33,36 +33,41 @@ var coyote := false
 var last_floor := false
 var jumping := false
 
+# Input Buffer variables.
+var input_buffer := []
+
 # Player nodes.
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var fsm: StateMachine = $StateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 
-
+#region Godot Basics functions.
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 	redefine_jumping_vars()
 
 
 func _process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("b_a"):
+		input_buffer.append("b_a")
 
 
 func _physics_process(delta: float) -> void:
 	pass
-
-
-#region Coyote time.
-
 #endregion
-
-
 
 ## Apply horizontal movement to player character.
 func horizontal_moving(direction: float, speed: float) -> float:
 	return direction * speed
 
+
+func get_last_input_buffer_action() -> String:
+	if input_buffer.size() > 0:
+		return input_buffer.pop_back()
+	else:
+		return ""
+	
 
 #region Time-based jump logic.
 ## Apply jump impulse to player character.
