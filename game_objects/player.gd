@@ -41,8 +41,7 @@ var jumping := false
 
 
 func _ready() -> void:
-	$CoyoteTimer.wait_time = 5.0
-	#coyote_frames / 60.0
+	$CoyoteTimer.wait_time = coyote_frames / 60.0
 	redefine_jumping_vars()
 
 

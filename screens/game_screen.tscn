@@ -30,9 +30,9 @@ target = NodePath("../Player")
 position = Vector2(173, 629)
 jump_height = 600.0
 jump_time_to_peak = 0.6
-jump_time_to_descent = 5.0
+jump_time_to_descent = 0.3
 peak_time = 0.2
-coyote_frames = 180
+coyote_frames = 8
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
