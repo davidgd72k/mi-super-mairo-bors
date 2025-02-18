@@ -18,10 +18,11 @@ func physics_update(_delta: float) -> void:
 
 	if not player.is_on_floor():
 		finished.emit(FALLING)
-	elif player.get_last_input_buffer_action() == "b_a":
-		finished.emit(JUMPING)
-	elif Input.is_action_pressed("d_left") or Input.is_action_pressed("d_right"):
-		finished.emit(RUNNING)
+	elif player.is_on_floor():
+		if input_buffer.consume_input(input_buffer.get_input() == BUTTON_A):
+			finished.emit(JUMPING)
+		elif Input.is_action_pressed("d_left") or Input.is_action_pressed("d_right"):
+			finished.emit(RUNNING)
 
 
 func apply_falling_effect_to_anim(applying: bool):

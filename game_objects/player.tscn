@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bc5ienlfttcbd"]
+[gd_scene load_steps=31 format=3 uid="uid://bc5ienlfttcbd"]
 
 [ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
 [ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://buhdrb4wkud2f" path="res://scripts/state_machine/player_states/jumping.gd" id="5_pyg5a"]
 [ext_resource type="Script" uid="uid://bn5ssf3bhug42" path="res://scripts/state_machine/player_states/falling.gd" id="7_jg8jt"]
 [ext_resource type="Script" uid="uid://bhuooup21hsqh" path="res://scripts/state_machine/player_states/hold_fall.gd" id="8_7rdht"]
+[ext_resource type="Script" uid="uid://1ddefkt4lk6x" path="res://scripts/systems/input_buffer.gd" id="9_xfs5t"]
 
 [sub_resource type="Animation" id="Animation_hy5qn"]
 length = 0.001
@@ -246,5 +247,11 @@ script = ExtResource("7_jg8jt")
 script = ExtResource("8_7rdht")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+
+[node name="InputBuffer" type="Node" parent="."]
+script = ExtResource("9_xfs5t")
+
+[node name="BufferTimer" type="Timer" parent="InputBuffer"]
+wait_time = 0.1
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

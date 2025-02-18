@@ -15,15 +15,17 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_pressed("b_b"):
 		player.velocity.x *= 3.0
+	
+	player.move_and_slide()
 
 	if not player.is_on_floor():
 		finished.emit(FALLING)
-	elif player.get_last_input_buffer_action() == "b_a":
-		finished.emit(JUMPING)
-	elif is_equal_approx(input_direction_x, 0.0):
-		finished.emit(IDLE)
+	elif player.is_on_floor():
+		if input_buffer.consume_input(input_buffer.get_input() == BUTTON_A):
+			finished.emit(JUMPING)
+		elif is_equal_approx(input_direction_x, 0.0):
+			finished.emit(IDLE)
 		
-	player.move_and_slide()
 
 
 func decide_sprite_side(velx: float) -> void:

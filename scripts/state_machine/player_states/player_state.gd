@@ -8,11 +8,14 @@ const RUNNING = "Running"
 const JUMPING = "Jumping"
 const FALLING = "Falling"
 const HOLDING_FALL = "HoldFall"
+const BUTTON_A = "b_a"
 
 var player: Player
+var input_buffer: InputBuffer
 
 
 func _ready() -> void:
 	await owner.ready
 	player = owner as Player
 	assert(player != null)
+	input_buffer = player.input_buffer

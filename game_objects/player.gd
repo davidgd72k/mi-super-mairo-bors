@@ -30,17 +30,12 @@ var fall_gravity: float = 0
 
 # Coyote time related variables.
 var coyote := false
-var last_floor := false
-var jumping := false
 
-# Input Buffer variables.
-var input_buffer := []
-
-# Player nodes.
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var fsm: StateMachine = $StateMachine
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var input_buffer: InputBuffer = $InputBuffer
 
 #region Godot Basics functions.
 func _ready() -> void:
@@ -50,8 +45,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("b_a"):
-		input_buffer.append("b_a")
-
+		# TODO: implementar un buen input_buffer.
+		input_buffer.add_input("b_a")
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -61,13 +56,6 @@ func _physics_process(delta: float) -> void:
 func horizontal_moving(direction: float, speed: float) -> float:
 	return direction * speed
 
-
-func get_last_input_buffer_action() -> String:
-	if input_buffer.size() > 0:
-		return input_buffer.pop_back()
-	else:
-		return ""
-	
 
 #region Time-based jump logic.
 ## Apply jump impulse to player character.
@@ -88,6 +76,7 @@ func redefine_jumping_vars():
 	jump_gravity = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 	fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 #endregion
+
 
 func play_squashing_animation():
 	animation_tree.set("parameters/InGround/AddSquash/add_amount", 1.0)
