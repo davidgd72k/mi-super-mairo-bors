@@ -25,7 +25,6 @@ func physics_update(delta: float) -> void:
 			finished.emit(JUMPING)
 		elif is_equal_approx(input_direction_x, 0.0):
 			finished.emit(IDLE)
-		
 
 
 func decide_sprite_side(velx: float) -> void:

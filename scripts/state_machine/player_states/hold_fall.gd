@@ -18,11 +18,13 @@ func physics_update(_delta: float) -> void:
 	player.velocity.x = player.running_speed * input_x_dir
 	player.velocity.y = 0.0
 	player.move_and_slide()
+	
+	if Input.is_action_just_released("b_a"):
+		finished.emit(FALLING)
 		
 
 
 func holding_time_timeout():
-	print("a caer")
 	finished.emit(FALLING)
 
 ## Called by the state machine upon changing the active state. The `data` parameter

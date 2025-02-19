@@ -1,11 +1,18 @@
 extends PlayerState
 
+var corner_corrected: bool
 
 func enter(previous_state_path: String, data := {}) -> void:
 	player.animation_tree["parameters/playback"].travel("Jump")
 	player.jump()
 	player.coyote = false
-	
+	player.get_node("CornerCorrector").correction.connect(_corner_correction)
+	corner_corrected = false
+
+
+func exit() -> void:
+	corner_corrected = false
+	player.get_node("CornerCorrector").correction.disconnect(_corner_correction)
 
 
 func physics_update(delta: float) -> void:
@@ -23,3 +30,12 @@ func physics_update(delta: float) -> void:
 		finished.emit(HOLDING_FALL, data_dict)
 	
 	player.move_and_slide()
+
+
+func _corner_correction(side: CornerCorrector.Side):
+	var distance = player.corner_distance_correction
+	
+	# TODO: corner is correcting only in start of jump.
+	if not corner_corrected:
+		player.global_position.x += distance if side == CornerCorrector.Side.Left else -distance
+		corner_corrected = true

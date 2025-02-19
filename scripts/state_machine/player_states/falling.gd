@@ -9,7 +9,6 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 
 func exit() -> void:
-	print("deberia chafarme contra el suelo")
 	player.animation_tree["parameters/playback"].travel("InGround")
 	player.play_squashing_animation()
 

@@ -15,10 +15,11 @@ func enter(previous_state_path: String, data := {}) -> void:
 
 func physics_update(_delta: float) -> void:
 	player.move_and_slide()
-
+	
 	if not player.is_on_floor():
 		finished.emit(FALLING)
 	elif player.is_on_floor():
+		# Consume Jump input when player touch the floor.
 		if input_buffer.consume_input(input_buffer.get_input() == BUTTON_A):
 			finished.emit(JUMPING)
 		elif Input.is_action_pressed("d_left") or Input.is_action_pressed("d_right"):

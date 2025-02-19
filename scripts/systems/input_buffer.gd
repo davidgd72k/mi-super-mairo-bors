@@ -1,6 +1,8 @@
 class_name InputBuffer
 extends Node
 
+const NULL_COMAND = "NOTHING"
+
 var buffer: Array[String] = []
 var timer: Timer
 
@@ -13,7 +15,6 @@ func _ready() -> void:
 
 
 func add_input(input: String):
-	print("añado un input al buffer")
 	buffer.push_front(input)
 	timer.start()
 	
@@ -21,32 +22,28 @@ func add_input(input: String):
 
 func get_input() -> String:
 	if buffer.size() > 0:
-		print("get_input")
 		return buffer.back()
-	else:
-		return ""
+	return NULL_COMAND
 
 
-func consume_input(input_exp: bool) -> bool:
-	if input_exp:
+func consume_input(input_expr: bool) -> bool:
+	if input_expr:
 		buffer.pop_back()
 		
+		# Still input in the buffer? Reset timer to cleanup.
 		if buffer.size() > 0:
 			timer.start()
 		
+		# Input is consumed.
 		return true
+	# Input is not consumed.
 	return false
 
 
 func _input_timeout():
-	print("input muere por inanación")
 	# Remove input for each timeout (even without input).
 	buffer.pop_back()
 	
 	# Still have input? Restart timer again.
 	if buffer.size() > 0:
 		timer.start()
-
-
-func size() -> int:
-	return buffer.size()

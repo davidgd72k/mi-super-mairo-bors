@@ -1,13 +1,5 @@
 class_name Player extends CharacterBody2D
 
-enum Anims {
-	Idle,
-	Walk,
-	Jump,
-	Fall,
-	RecoverFall,
-}
-
 @export_group("Jumping")
 ## Altura a la que llegará tu personaje.
 @export var jump_height: float = 100.0
@@ -21,7 +13,8 @@ enum Anims {
 ## Velocidad horizontal.
 @export var running_speed: float = 400.0
 @export_group("Coyote Time")
-@export var coyote_frames: int = 6
+@export var coyote_frames: int = 8
+@export var corner_distance_correction = 64
 
 # Time-based gravity vars.
 var jump_velocity: float = 0
@@ -45,8 +38,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("b_a"):
-		# TODO: implementar un buen input_buffer.
 		input_buffer.add_input("b_a")
+
 
 func _physics_process(delta: float) -> void:
 	pass
@@ -77,10 +70,11 @@ func redefine_jumping_vars():
 	fall_gravity = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
 #endregion
 
-
+## Play squashing animation when player hit ground.
 func play_squashing_animation():
 	animation_tree.set("parameters/InGround/AddSquash/add_amount", 1.0)
 
 
+## Reset coyote-time use.
 func _on_coyote_timer_timeout() -> void:
 	coyote = false
