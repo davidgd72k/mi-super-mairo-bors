@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2dxrfdove5r5"]
+
+[ext_resource type="Texture2D" uid="uid://diq6n7sefxpky" path="res://assets/art/tilesets/ts_gb_general.png" id="1_k0kqm"]
+[ext_resource type="Script" uid="uid://mbfb5cfgflt6" path="res://game_objects/coin.gd" id="1_pebak"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pebak"]
+radius = 84.214
+
+[node name="Coin" type="Area2D"]
+collision_layer = 8
+script = ExtResource("1_pebak")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k0kqm")
+hframes = 14
+vframes = 7
+frame = 50
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_pebak")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

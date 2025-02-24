@@ -40,7 +40,6 @@ position = Vector2(173, 629)
 jump_height = 600.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.3
-peak_time = 2.0
 coyote_frames = 12
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -70,5 +69,21 @@ theme_override_colors/font_color = Color(0.920995, 0.920995, 0.920995, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "AA"
+
+[node name="CoinLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.980392, 0.32549, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 5
+text = "MONEDAS"
 
 [node name="CurrentLevel" parent="." instance=ExtResource("4_30aos")]
