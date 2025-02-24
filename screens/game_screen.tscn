@@ -23,6 +23,15 @@ zoom = Vector2(0.5, 0.5)
 limit_left = 0
 limit_top = -100
 limit_bottom = 1080
+position_smoothing_speed = 20.0
+drag_horizontal_enabled = true
+drag_horizontal_offset = 0.1
+drag_left_margin = 0.3
+drag_top_margin = 1.0
+drag_right_margin = 0.3
+drag_bottom_margin = 1.0
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource("3_rxj4p")
 target = NodePath("../Player")
 
@@ -31,7 +40,7 @@ position = Vector2(173, 629)
 jump_height = 600.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.3
-peak_time = 5.0
+peak_time = 2.0
 coyote_frames = 12
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -57,5 +66,9 @@ text = "aaaaaaa"
 offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 52.0
+theme_override_colors/font_color = Color(0.920995, 0.920995, 0.920995, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+text = "AA"
 
 [node name="CurrentLevel" parent="." instance=ExtResource("4_30aos")]
