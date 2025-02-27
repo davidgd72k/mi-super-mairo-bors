@@ -37,6 +37,8 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_rxj4p")]
 position = Vector2(173, 629)
+floor_stop_on_slope = false
+floor_constant_speed = true
 jump_height = 600.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.3

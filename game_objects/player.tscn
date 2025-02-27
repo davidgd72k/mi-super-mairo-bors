@@ -159,7 +159,7 @@ animation = &"walk"
 animation = &"squashing_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ojauy"]
-graph_offset = Vector2(-584.119, 52.7007)
+graph_offset = Vector2(-317.488, 188.757)
 nodes/AddSquash/node = SubResource("AnimationNodeAdd2_pbirh")
 nodes/AddSquash/position = Vector2(385.881, 197.088)
 nodes/BlendWalking/node = SubResource("AnimationNodeBlend2_ghwos")
