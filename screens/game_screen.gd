@@ -31,3 +31,4 @@ func _physics_process(delta: float) -> void:
 func _update_text():
 	coins += 1
 	coin_label.text = "Coins: " + str(coins)
+	AudioManager.play("res://assets/audio/sfx/coin.wav")

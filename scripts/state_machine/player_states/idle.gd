@@ -13,7 +13,8 @@ func enter(previous_state_path: String, data := {}) -> void:
 		anim_tree.set("parameters/InGround/BlendWalking/blend_amount", 0.0)
 
 
-func physics_update(_delta: float) -> void:
+func physics_update(delta: float) -> void:
+	player.velocity.y += player.get_gravity().y * delta
 	player.move_and_slide()
 	
 	if not player.is_on_floor():

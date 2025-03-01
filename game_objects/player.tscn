@@ -159,7 +159,7 @@ animation = &"walk"
 animation = &"squashing_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ojauy"]
-graph_offset = Vector2(-584.119, 52.7007)
+graph_offset = Vector2(-39.1704, 167.848)
 nodes/AddSquash/node = SubResource("AnimationNodeAdd2_pbirh")
 nodes/AddSquash/position = Vector2(385.881, 197.088)
 nodes/BlendWalking/node = SubResource("AnimationNodeBlend2_ghwos")
@@ -202,6 +202,8 @@ height = 136.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
+floor_constant_speed = true
+floor_snap_length = 32.0
 script = ExtResource("1_a4hy7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -252,19 +254,19 @@ script = ExtResource("8_7rdht")
 script = ExtResource("9_xfs5t")
 
 [node name="BufferTimer" type="Timer" parent="InputBuffer"]
-wait_time = 0.3
+wait_time = 0.1
 
 [node name="CornerCorrector" type="Node2D" parent="."]
 position = Vector2(0, -62)
 script = ExtResource("10_pbirh")
 
 [node name="RayLeft" type="RayCast2D" parent="CornerCorrector"]
-position = Vector2(-38, 0)
+position = Vector2(-32, 0)
 target_position = Vector2(0, -150)
 collision_mask = 2
 
 [node name="RayRight" type="RayCast2D" parent="CornerCorrector"]
-position = Vector2(38, 0)
+position = Vector2(32, 0)
 target_position = Vector2(0, -150)
 collision_mask = 2
 

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GlobalVar="*res://global/global_var.tscn"
+AudioManager="*res://scripts/managers/audio_manager.gd"
 
 [display]
 

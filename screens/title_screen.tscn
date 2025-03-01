@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://401uxdkbki2j"]
+[gd_scene load_steps=10 format=3 uid="uid://401uxdkbki2j"]
 
 [ext_resource type="Texture2D" uid="uid://cbfrhflm0h4t" path="res://assets/art/ui/ui_title_panel.png" id="1_81buc"]
 [ext_resource type="FontFile" uid="uid://bea8ylosd4llw" path="res://assets/fonts/BebasNeue-Regular.ttf" id="1_grftj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://d1i108wqmp4ok" path="res://shaders/color_tint.tres" id="2_txg6x"]
 [ext_resource type="Theme" uid="uid://b12k0qovw7yqg" path="res://materials/title_menu_theme.tres" id="6_txg6x"]
 [ext_resource type="Texture2D" uid="uid://dj2fja8qictc0" path="res://assets/art/ui/ui_cursor.png" id="7_7jf2m"]
+[ext_resource type="AudioStream" uid="uid://cla3iygrcfljy" path="res://assets/audio/music/bgm_title_menu.ogg" id="8_dsjsu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7jf2m"]
 shader = ExtResource("2_txg6x")
@@ -103,3 +104,8 @@ text = "Salir"
 unique_name_in_owner = true
 position = Vector2(381, 347)
 texture = ExtResource("7_7jf2m")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_dsjsu")
+autoplay = true
+parameters/looping = true

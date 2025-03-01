@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmsrkmeyka3nv"]
+[gd_scene load_steps=8 format=3 uid="uid://bmsrkmeyka3nv"]
 
 [ext_resource type="Script" uid="uid://tcrahr83r522" path="res://screens/game_screen.gd" id="1_30aos"]
 [ext_resource type="PackedScene" uid="uid://bc5ienlfttcbd" path="res://game_objects/player.tscn" id="2_rxj4p"]
 [ext_resource type="Script" uid="uid://cwfqvxhcy1xo1" path="res://scripts/controllers/basic_camera_controller.gd" id="3_rxj4p"]
 [ext_resource type="PackedScene" uid="uid://8kffwj1lwjj8" path="res://levels/level_test_a.tscn" id="4_30aos"]
 [ext_resource type="Shader" uid="uid://0x8756alrwjy" path="res://shaders/halftone_cmyk.gdshader" id="4_frmbi"]
+[ext_resource type="AudioStream" uid="uid://dcttvhffx6aos" path="res://assets/audio/music/bgm_level1.ogg" id="6_10oun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_10oun"]
 shader = ExtResource("4_frmbi")
@@ -37,6 +38,7 @@ target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_rxj4p")]
 position = Vector2(173, 629)
+floor_stop_on_slope = false
 jump_height = 600.0
 jump_time_to_peak = 0.6
 jump_time_to_descent = 0.3
@@ -87,3 +89,9 @@ theme_override_constants/outline_size = 5
 text = "MONEDAS"
 
 [node name="CurrentLevel" parent="." instance=ExtResource("4_30aos")]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_10oun")
+volume_db = -10.0
+autoplay = true
+parameters/looping = true
