@@ -93,5 +93,4 @@ text = "MONEDAS"
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_10oun")
 volume_db = -10.0
-autoplay = true
 parameters/looping = true

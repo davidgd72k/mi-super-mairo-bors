@@ -37,12 +37,12 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("b_a"):
-		input_buffer.add_input("b_a")
+	pass
 
 
 func _physics_process(delta: float) -> void:
-	pass
+	if Input.is_action_just_pressed("b_a"):
+		input_buffer.add_input("b_a")
 #endregion
 
 ## Apply horizontal movement to player character.
@@ -78,3 +78,8 @@ func play_squashing_animation():
 ## Reset coyote-time use.
 func _on_coyote_timer_timeout() -> void:
 	coyote = false
+
+
+func _on_input_buffer_input_consumed(input: String) -> void:
+	if input == "b_a":
+		AudioManager.play("res://assets/audio/sfx/sfx_jump_noise.ogg")

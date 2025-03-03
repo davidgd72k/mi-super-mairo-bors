@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx4ogxe30py0r"]
+
+[ext_resource type="Texture2D" uid="uid://yiwqmp3hdr3h" path="res://icon.svg" id="1_h6sx4"]
+[ext_resource type="Script" uid="uid://cgpyknovuhw54" path="res://game_objects/surprise_block.gd" id="1_tln61"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tln61"]
+size = Vector2(124, 126)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ll4p"]
+size = Vector2(120, 25)
+
+[node name="SurpriseBlock" type="StaticBody2D"]
+collision_layer = 16
+script = ExtResource("1_tln61")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h6sx4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tln61")
+
+[node name="HitZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
+position = Vector2(0, 68.5)
+shape = SubResource("RectangleShape2D_6ll4p")
+
+[connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

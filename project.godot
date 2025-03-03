@@ -95,6 +95,7 @@ reset_level={
 2d_physics/layer_2="level"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="collectables"
+2d_physics/layer_5="interactuable"
 
 [rendering]
 

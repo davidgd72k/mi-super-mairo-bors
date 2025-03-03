@@ -1,6 +1,8 @@
 class_name InputBuffer
 extends Node
 
+signal input_consumed(input: String)
+
 const NULL_COMAND = "NOTHING"
 
 var buffer: Array[String] = []
@@ -28,8 +30,8 @@ func get_input() -> String:
 
 func consume_input(input_expr: bool) -> bool:
 	if input_expr:
-		buffer.pop_back()
-		
+		var consumed = buffer.pop_back()
+		input_consumed.emit(consumed)
 		# Still input in the buffer? Reset timer to cleanup.
 		if buffer.size() > 0:
 			timer.start()
