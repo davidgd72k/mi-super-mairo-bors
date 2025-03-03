@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://8kffwj1lwjj8"]
+[gd_scene load_steps=12 format=4 uid="uid://8kffwj1lwjj8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_21n7v"]
-[ext_resource type="Shader" uid="uid://d1i108wqmp4ok" path="res://shaders/color_tint.tres" id="2_21n7v"]
+[ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_iyxl2"]
 [ext_resource type="Texture2D" uid="uid://0fw328hnvu06" path="res://assets/art/backgrounds/bg_dawn_charles_v_alhambra_granada.jpg" id="3_iyxl2"]
 [ext_resource type="PackedScene" uid="uid://c2dxrfdove5r5" path="res://game_objects/coin.tscn" id="4_x4lo5"]
 [ext_resource type="PackedScene" uid="uid://bx4ogxe30py0r" path="res://game_objects/surprise_block.tscn" id="5_iyxl2"]
@@ -43,9 +43,21 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_l2phr")
 
+[sub_resource type="Gradient" id="Gradient_l2phr"]
+colors = PackedColorArray(0, 0, 0, 0.501961, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xcqg4"]
+gradient = SubResource("Gradient_l2phr")
+width = 128
+height = 128
+fill_from = Vector2(0, 0.917391)
+fill_to = Vector2(0, 0.656522)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o7qbj"]
-shader = ExtResource("2_21n7v")
-shader_parameter/ColorTint = Color(0.172924, 0.173594, 0.518487, 1)
+shader = ExtResource("2_iyxl2")
+shader_parameter/TexTint = Color(0.172924, 0.173594, 0.518487, 1)
+shader_parameter/GradTint = Color(1, 1, 1, 1)
+shader_parameter/GradientTex = SubResource("GradientTexture2D_xcqg4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iyxl2"]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx4ogxe30py0r"]
+[gd_scene load_steps=9 format=3 uid="uid://bx4ogxe30py0r"]
 
 [ext_resource type="Texture2D" uid="uid://yiwqmp3hdr3h" path="res://icon.svg" id="1_h6sx4"]
 [ext_resource type="Script" uid="uid://cgpyknovuhw54" path="res://game_objects/surprise_block.gd" id="1_tln61"]
@@ -9,6 +9,53 @@ size = Vector2(124, 126)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ll4p"]
 size = Vector2(120, 25)
 
+[sub_resource type="Animation" id="Animation_6ll4p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tln61"]
+resource_name = "pushed"
+length = 0.3
+step = 0.1
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"bucle",
+"time": 0.3
+}]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -40), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7gro3"]
+_data = {
+&"RESET": SubResource("Animation_6ll4p"),
+&"pushed": SubResource("Animation_tln61")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tln61"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
 [node name="SurpriseBlock" type="StaticBody2D"]
 collision_layer = 16
 script = ExtResource("1_tln61")
@@ -17,12 +64,22 @@ script = ExtResource("1_tln61")
 texture = ExtResource("1_h6sx4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_tln61")
 
 [node name="HitZone" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitZone"]
+visible = false
 position = Vector2(0, 68.5)
 shape = SubResource("RectangleShape2D_6ll4p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_7gro3")
+}
+
+[node name="CoinParticle" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_tln61")
 
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

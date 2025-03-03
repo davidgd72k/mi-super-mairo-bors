@@ -14,6 +14,8 @@ func _process(delta: float) -> void:
 
 
 func _on_hit_zone_body_entered(body: Node2D) -> void:
+	$AnimationPlayer.play("pushed")
+	
 	if not pushed:
 		AudioManager.play("res://assets/audio/sfx/coin.wav")
 		$Sprite2D.modulate = Color(0.577, 0.577, 0.577)
@@ -21,3 +23,5 @@ func _on_hit_zone_body_entered(body: Node2D) -> void:
 		# TODO: little pushing animation.
 	else:
 		AudioManager.play("res://assets/audio/sfx/sfx_golpe_duro.ogg")
+		
+	

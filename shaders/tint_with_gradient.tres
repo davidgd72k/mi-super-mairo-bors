@@ -11,7 +11,7 @@ default_value_enabled = true
 output_port_for_preview = 0
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
-operator = 2
+operator = 6
 
 [sub_resource type="VisualShaderNodeTexture2DParameter" id="VisualShaderNodeTexture2DParameter_xmp2e"]
 parameter_name = "GradientTex"
@@ -54,7 +54,7 @@ void fragment() {
 
 
 // VectorOp:4
-	vec4 n_out4p0 = n_out2p0 * n_out3p0;
+	vec4 n_out4p0 = max(n_out2p0, n_out3p0);
 
 
 // ColorParameter:8
