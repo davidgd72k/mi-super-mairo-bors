@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://8kffwj1lwjj8"]
+[gd_scene load_steps=13 format=4 uid="uid://8kffwj1lwjj8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_21n7v"]
 [ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_iyxl2"]
 [ext_resource type="Texture2D" uid="uid://0fw328hnvu06" path="res://assets/art/backgrounds/bg_dawn_charles_v_alhambra_granada.jpg" id="3_iyxl2"]
 [ext_resource type="PackedScene" uid="uid://c2dxrfdove5r5" path="res://game_objects/coin.tscn" id="4_x4lo5"]
 [ext_resource type="PackedScene" uid="uid://bx4ogxe30py0r" path="res://game_objects/surprise_block.tscn" id="5_iyxl2"]
+[ext_resource type="Material" uid="uid://b3u0bw5lg45ck" path="res://materials/coin_shader_mat.tres" id="5_l2phr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l2phr"]
 texture = ExtResource("1_21n7v")
@@ -100,16 +101,8 @@ position = Vector2(220, 311)
 [node name="Coins" type="Node2D" parent="."]
 
 [node name="Coin" parent="Coins" instance=ExtResource("4_x4lo5")]
-position = Vector2(1070, 805)
-
-[node name="Coin2" parent="Coins" instance=ExtResource("4_x4lo5")]
-position = Vector2(1568, 421)
-
-[node name="Coin3" parent="Coins" instance=ExtResource("4_x4lo5")]
-position = Vector2(2967, 885)
-
-[node name="Coin4" parent="Coins" instance=ExtResource("4_x4lo5")]
-position = Vector2(2477, 420)
+material = ExtResource("5_l2phr")
+position = Vector2(1312, 825)
 
 [node name="SurpriseBlock" parent="." instance=ExtResource("5_iyxl2")]
 position = Vector2(772, 620)
