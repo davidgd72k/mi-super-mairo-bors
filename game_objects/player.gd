@@ -7,7 +7,6 @@ class_name Player extends CharacterBody2D
 @export var jump_time_to_peak: float = 1
 ## Tiempo que tardará en caer.
 @export var jump_time_to_descent: float = 0.5
-
 @export var peak_time: float = 0.5
 @export_group("Horizontal movement")
 ## Velocidad horizontal.
@@ -15,6 +14,8 @@ class_name Player extends CharacterBody2D
 @export_group("Coyote Time")
 @export var coyote_frames: int = 8
 @export var corner_distance_correction = 64
+# -----------
+@export var life: int = 3
 
 # Time-based gravity vars.
 var jump_velocity: float = 0
@@ -83,3 +84,6 @@ func _on_coyote_timer_timeout() -> void:
 func _on_input_buffer_input_consumed(input: String) -> void:
 	if input == "b_a":
 		AudioManager.play("res://assets/audio/sfx/sfx_jump_noise.ogg")
+
+func do_damage(amount: int):
+	life -= amount

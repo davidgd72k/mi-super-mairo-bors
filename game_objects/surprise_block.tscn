@@ -1,7 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bx4ogxe30py0r"]
+[gd_scene load_steps=10 format=3 uid="uid://bx4ogxe30py0r"]
 
 [ext_resource type="Texture2D" uid="uid://yiwqmp3hdr3h" path="res://icon.svg" id="1_h6sx4"]
 [ext_resource type="Script" uid="uid://cgpyknovuhw54" path="res://game_objects/surprise_block.gd" id="1_tln61"]
+[ext_resource type="Texture2D" uid="uid://ymkgct1kpbgv" path="res://assets/art/sprites/spr_base_coin.png" id="2_6ll4p"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7gro3"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tln61"]
 size = Vector2(124, 126)
@@ -52,13 +57,16 @@ _data = {
 &"pushed": SubResource("Animation_tln61")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tln61"]
-particle_flag_disable_z = true
-gravity = Vector3(0, 98, 0)
-
 [node name="SurpriseBlock" type="StaticBody2D"]
 collision_layer = 16
 script = ExtResource("1_tln61")
+
+[node name="CoinParticle" type="GPUParticles2D" parent="."]
+amount = 1
+texture = ExtResource("2_6ll4p")
+lifetime = 2.0
+speed_scale = 2.5
+process_material = SubResource("ParticleProcessMaterial_7gro3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_h6sx4")
@@ -78,8 +86,5 @@ shape = SubResource("RectangleShape2D_6ll4p")
 libraries = {
 &"": SubResource("AnimationLibrary_7gro3")
 }
-
-[node name="CoinParticle" type="GPUParticles2D" parent="."]
-process_material = SubResource("ParticleProcessMaterial_tln61")
 
 [connection signal="body_entered" from="HitZone" to="." method="_on_hit_zone_body_entered"]

@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=4 uid="uid://8kffwj1lwjj8"]
+[gd_scene load_steps=14 format=4 uid="uid://8kffwj1lwjj8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_21n7v"]
-[ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="2_iyxl2"]
-[ext_resource type="Texture2D" uid="uid://0fw328hnvu06" path="res://assets/art/backgrounds/bg_dawn_charles_v_alhambra_granada.jpg" id="3_iyxl2"]
+[ext_resource type="Shader" uid="uid://7bcxtjmyheno" path="res://shaders/sky_2d.gdshader" id="2_k0sn6"]
+[ext_resource type="Shader" uid="uid://dnj2pdjr8urai" path="res://shaders/stylized_sky.gdshader" id="3_o7qbj"]
+[ext_resource type="Texture2D" uid="uid://dk6huktfrj80m" path="res://assets/art/backgrounds/bg_charles_v_alhambra_granada_skyless.png" id="4_7f3r1"]
 [ext_resource type="PackedScene" uid="uid://c2dxrfdove5r5" path="res://game_objects/coin.tscn" id="4_x4lo5"]
 [ext_resource type="PackedScene" uid="uid://bx4ogxe30py0r" path="res://game_objects/surprise_block.tscn" id="5_iyxl2"]
 [ext_resource type="Material" uid="uid://b3u0bw5lg45ck" path="res://materials/coin_shader_mat.tres" id="5_l2phr"]
+[ext_resource type="PackedScene" uid="uid://7otl7jqmsowk" path="res://game_objects/spike.tscn" id="7_xcqg4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l2phr"]
 texture = ExtResource("1_21n7v")
@@ -44,21 +46,38 @@ physics_layer_0/collision_layer = 2
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_l2phr")
 
-[sub_resource type="Gradient" id="Gradient_l2phr"]
-colors = PackedColorArray(0, 0, 0, 0.501961, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xcqg4"]
-gradient = SubResource("Gradient_l2phr")
-width = 128
-height = 128
-fill_from = Vector2(0, 0.917391)
-fill_to = Vector2(0, 0.656522)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4pmc0"]
+shader = ExtResource("2_k0sn6")
+shader_parameter/cloudscale = 1.1
+shader_parameter/speed = 0.01
+shader_parameter/clouddark = 0.5
+shader_parameter/cloudlight = 0.3
+shader_parameter/cloudcover = 0.2
+shader_parameter/cloudalpha = 8.0
+shader_parameter/skytint = 0.5
+shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
+shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
+shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o7qbj"]
-shader = ExtResource("2_iyxl2")
-shader_parameter/TexTint = Color(0.172924, 0.173594, 0.518487, 1)
-shader_parameter/GradTint = Color(1, 1, 1, 1)
-shader_parameter/GradientTex = SubResource("GradientTexture2D_xcqg4")
+shader = ExtResource("3_o7qbj")
+shader_parameter/clouds_samples = 16
+shader_parameter/shadow_sample = 4
+shader_parameter/clouds_density = 0.5
+shader_parameter/clouds_scale = 1.0
+shader_parameter/clouds_smoothness = 0.035
+shader_parameter/clouds_light_color = Color(0, 0, 0, 1)
+shader_parameter/clouds_shadow_intensity = 1.0
+shader_parameter/high_clouds_density = 0.0
+shader_parameter/top_color = Color(1, 1, 1, 1)
+shader_parameter/bottom_color = Color(1, 1, 1, 1)
+shader_parameter/sun_scatter = Color(1, 1, 1, 1)
+shader_parameter/astro_tint = Color(0, 0, 0, 1)
+shader_parameter/astro_scale = 1.0
+shader_parameter/astro_intensity = 1.0
+shader_parameter/stars_intensity = 0.0
+shader_parameter/shooting_stars_intensity = 0.0
+shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iyxl2"]
 
@@ -69,6 +88,13 @@ tile_map_data = PackedByteArray("AAAAAAcAAAAAAAEAAAABAAcAAAAAAAEAAAACAAcAAAAAAAE
 tile_set = SubResource("TileSet_xcqg4")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="SkyRect" type="ColorRect" parent="ParallaxBackground"]
+material = SubResource("ShaderMaterial_4pmc0")
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 384.0
+grow_horizontal = 2
 
 [node name="Fondo" type="TextureRect" parent="ParallaxBackground"]
 material = SubResource("ShaderMaterial_o7qbj")
@@ -81,7 +107,7 @@ offset_right = 101.0
 offset_bottom = 103.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_iyxl2")
+texture = ExtResource("4_7f3r1")
 expand_mode = 2
 stretch_mode = 4
 metadata/_edit_use_anchors_ = true
@@ -102,7 +128,10 @@ position = Vector2(220, 311)
 
 [node name="Coin" parent="Coins" instance=ExtResource("4_x4lo5")]
 material = ExtResource("5_l2phr")
-position = Vector2(1312, 825)
+position = Vector2(1604, 368)
 
 [node name="SurpriseBlock" parent="." instance=ExtResource("5_iyxl2")]
 position = Vector2(772, 620)
+
+[node name="Spike" parent="." instance=ExtResource("7_xcqg4")]
+position = Vector2(1238, 823)

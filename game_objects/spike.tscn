@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://7otl7jqmsowk"]
+
+[ext_resource type="Script" uid="uid://1cn8xbf4vcxr" path="res://game_objects/spike.gd" id="1_86udd"]
+[ext_resource type="Texture2D" uid="uid://diq6n7sefxpky" path="res://assets/art/tilesets/ts_gb_general.png" id="2_if2i7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_86udd"]
+size = Vector2(110, 33)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_if2i7"]
+size = Vector2(144, 40)
+
+[node name="Spike" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_86udd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_if2i7")
+hframes = 14
+vframes = 7
+frame = 70
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_86udd")
+debug_color = Color(0.810132, 0.376322, 0.450024, 0.42)
+
+[node name="CollBox" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CollBox"]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_if2i7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
