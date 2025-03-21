@@ -44,9 +44,9 @@ jump_time_to_peak = 0.6
 jump_time_to_descent = 0.3
 coyote_frames = 12
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="DebUI" type="CanvasLayer" parent="."]
 
-[node name="ShaderRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ShaderRect" type="ColorRect" parent="DebUI"]
 visible = false
 material = SubResource("ShaderMaterial_10oun")
 anchors_preset = 15
@@ -55,7 +55,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DataLabel" type="Label" parent="CanvasLayer"]
+[node name="DataLabel" type="Label" parent="DebUI"]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -63,7 +63,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "aaaaaaa"
 
-[node name="StateLabel" type="Label" parent="CanvasLayer"]
+[node name="StateLabel" type="Label" parent="DebUI"]
 offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 52.0
@@ -72,7 +72,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "AA"
 
-[node name="CoinLabel" type="Label" parent="CanvasLayer"]
+[node name="CoinLabel" type="Label" parent="DebUI"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -87,6 +87,18 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 5
 text = "MONEDAS"
+
+[node name="LifeLabel" type="Label" parent="DebUI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -146.0
+offset_bottom = 35.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "LIFE: 3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CurrentLevel" parent="." instance=ExtResource("4_30aos")]
 

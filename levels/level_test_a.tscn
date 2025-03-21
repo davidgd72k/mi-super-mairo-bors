@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://8kffwj1lwjj8"]
+[gd_scene load_steps=15 format=4 uid="uid://8kffwj1lwjj8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_21n7v"]
 [ext_resource type="Shader" uid="uid://7bcxtjmyheno" path="res://shaders/sky_2d.gdshader" id="2_k0sn6"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bx4ogxe30py0r" path="res://game_objects/surprise_block.tscn" id="5_iyxl2"]
 [ext_resource type="Material" uid="uid://b3u0bw5lg45ck" path="res://materials/coin_shader_mat.tres" id="5_l2phr"]
 [ext_resource type="PackedScene" uid="uid://7otl7jqmsowk" path="res://game_objects/spike.tscn" id="7_xcqg4"]
+[ext_resource type="PackedScene" uid="uid://bxdrem17ifiiv" path="res://game_objects/goomba.tscn" id="9_o7qbj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l2phr"]
 texture = ExtResource("1_21n7v")
@@ -135,3 +136,6 @@ position = Vector2(772, 620)
 
 [node name="Spike" parent="." instance=ExtResource("7_xcqg4")]
 position = Vector2(1238, 823)
+
+[node name="Goomba" parent="." instance=ExtResource("9_o7qbj")]
+position = Vector2(502, 823)

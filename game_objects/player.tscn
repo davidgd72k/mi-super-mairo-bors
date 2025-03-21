@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bc5ienlfttcbd"]
+[gd_scene load_steps=33 format=3 uid="uid://bc5ienlfttcbd"]
 
 [ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
 [ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
@@ -200,6 +200,9 @@ graph_offset = Vector2(60.4588, -108)
 radius = 41.0
 height = 136.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbirh"]
+size = Vector2(114, 39)
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
 floor_constant_speed = true
@@ -270,5 +273,16 @@ position = Vector2(32, 0)
 target_position = Vector2(0, -150)
 collision_mask = 2
 
+[node name="StompCollider" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompCollider"]
+position = Vector2(0, 71.5)
+shape = SubResource("RectangleShape2D_pbirh")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+scale = Vector2(7.4, 7.7)
+
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
 [connection signal="input_consumed" from="InputBuffer" to="." method="_on_input_buffer_input_consumed"]
+[connection signal="body_entered" from="StompCollider" to="." method="_on_stomp_collider_body_entered"]

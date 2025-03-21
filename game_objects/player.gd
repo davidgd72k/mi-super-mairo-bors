@@ -7,6 +7,7 @@ class_name Player extends CharacterBody2D
 @export var jump_time_to_peak: float = 1
 ## Tiempo que tardará en caer.
 @export var jump_time_to_descent: float = 0.5
+@export_subgroup("Peaking in air")
 @export var peak_time: float = 0.5
 @export_group("Horizontal movement")
 ## Velocidad horizontal.
@@ -14,7 +15,7 @@ class_name Player extends CharacterBody2D
 @export_group("Coyote Time")
 @export var coyote_frames: int = 8
 @export var corner_distance_correction = 64
-# -----------
+@export_group("Player stats")
 @export var life: int = 3
 
 # Time-based gravity vars.
@@ -87,3 +88,8 @@ func _on_input_buffer_input_consumed(input: String) -> void:
 
 func do_damage(amount: int):
 	life -= amount
+
+
+func _on_stomp_collider_body_entered(body: Node2D) -> void:
+	if body.is_in_group("enemies"):
+		body.stomp()
