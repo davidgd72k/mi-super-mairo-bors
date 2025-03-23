@@ -4,6 +4,7 @@ var falling_timer: Timer
 
 func enter(previous_state_path: String, data := {}) -> void:
 	var anim_tree = player.animation_tree
+	player.im_jumping = false
 	anim_tree.set("parameters/InGround/BlendWalking/blend_amount", 1.0)
 	
 	falling_timer = Timer.new()

@@ -1,8 +1,8 @@
-[gd_scene load_steps=15 format=4 uid="uid://8kffwj1lwjj8"]
+[gd_scene load_steps=17 format=4 uid="uid://8kffwj1lwjj8"]
 
 [ext_resource type="Texture2D" uid="uid://c5ycdqm45rlws" path="res://assets/art/tilesets/ts_grounds.png" id="1_21n7v"]
 [ext_resource type="Shader" uid="uid://7bcxtjmyheno" path="res://shaders/sky_2d.gdshader" id="2_k0sn6"]
-[ext_resource type="Shader" uid="uid://dnj2pdjr8urai" path="res://shaders/stylized_sky.gdshader" id="3_o7qbj"]
+[ext_resource type="Shader" uid="uid://gbvlg1ey37as" path="res://shaders/tint_with_gradient.tres" id="3_o7qbj"]
 [ext_resource type="Texture2D" uid="uid://dk6huktfrj80m" path="res://assets/art/backgrounds/bg_charles_v_alhambra_granada_skyless.png" id="4_7f3r1"]
 [ext_resource type="PackedScene" uid="uid://c2dxrfdove5r5" path="res://game_objects/coin.tscn" id="4_x4lo5"]
 [ext_resource type="PackedScene" uid="uid://bx4ogxe30py0r" path="res://game_objects/surprise_block.tscn" id="5_iyxl2"]
@@ -60,25 +60,20 @@ shader_parameter/skycolour1 = Vector3(0.2, 0.4, 0.6)
 shader_parameter/skycolour2 = Vector3(0.4, 0.7, 1)
 shader_parameter/m = Transform2D(1.6, -1.2, 1.2, 1.6, 0, 0)
 
+[sub_resource type="Gradient" id="Gradient_o7qbj"]
+offsets = PackedFloat32Array(0, 0.698795)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7f3r1"]
+gradient = SubResource("Gradient_o7qbj")
+fill_from = Vector2(1, 0.847826)
+fill_to = Vector2(1, 0.391304)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o7qbj"]
 shader = ExtResource("3_o7qbj")
-shader_parameter/clouds_samples = 16
-shader_parameter/shadow_sample = 4
-shader_parameter/clouds_density = 0.5
-shader_parameter/clouds_scale = 1.0
-shader_parameter/clouds_smoothness = 0.035
-shader_parameter/clouds_light_color = Color(0, 0, 0, 1)
-shader_parameter/clouds_shadow_intensity = 1.0
-shader_parameter/high_clouds_density = 0.0
-shader_parameter/top_color = Color(1, 1, 1, 1)
-shader_parameter/bottom_color = Color(1, 1, 1, 1)
-shader_parameter/sun_scatter = Color(1, 1, 1, 1)
-shader_parameter/astro_tint = Color(0, 0, 0, 1)
-shader_parameter/astro_scale = 1.0
-shader_parameter/astro_intensity = 1.0
-shader_parameter/stars_intensity = 0.0
-shader_parameter/shooting_stars_intensity = 0.0
-shader_parameter/shooting_star_tint = Color(0, 0, 0, 1)
+shader_parameter/TexTint = Color(0.172924, 0.173594, 0.518487, 1)
+shader_parameter/GradTint = Color(0.611765, 0.705882, 0.635294, 1)
+shader_parameter/GradientTex = SubResource("GradientTexture2D_7f3r1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_iyxl2"]
 
@@ -138,4 +133,4 @@ position = Vector2(772, 620)
 position = Vector2(1238, 823)
 
 [node name="Goomba" parent="." instance=ExtResource("9_o7qbj")]
-position = Vector2(502, 823)
+position = Vector2(2401, 424)

@@ -6,11 +6,14 @@ func enter(previous_state_path: String, data := {}) -> void:
 	player.animation_tree["parameters/playback"].travel("Jump")
 	player.jump()
 	player.coyote = false
-	player.get_node("CornerCorrector").correction.connect(_corner_correction)
+	
+	# Connect corner corrector to state.
 	corner_corrected = false
+	player.get_node("CornerCorrector").correction.connect(_corner_correction)
 
 
 func exit() -> void:
+	# Disconnect corner corrector to state.
 	corner_corrected = false
 	player.get_node("CornerCorrector").correction.disconnect(_corner_correction)
 

@@ -37,7 +37,7 @@ script = ExtResource("3_rxj4p")
 target = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource("2_rxj4p")]
-position = Vector2(189, 769)
+position = Vector2(2150, 281)
 floor_stop_on_slope = false
 jump_height = 600.0
 jump_time_to_peak = 0.6
