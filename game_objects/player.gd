@@ -1,5 +1,7 @@
 class_name Player extends CharacterBody2D
 
+signal damaged
+
 @export_group("Jumping")
 ## Altura a la que llegará tu personaje.
 @export var jump_height: float = 100.0
@@ -50,7 +52,10 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	im_jumping = not is_equal_approx(velocity.y, 0.0)
+	# You're jumping when vertical velocity is static.
+	im_jumping = (fsm as StateMachine).state.name == PlayerState.FALLING
+	
+	stomp_collider.monitoring = im_jumping
 	
 	if Input.is_action_just_pressed("b_a"):
 		input_buffer.add_input("b_a")
@@ -90,6 +95,7 @@ func play_squashing_animation():
 #region Gameplay methods.
 func do_damage(amount: int):
 	life -= amount
+	damaged.emit()
 #endregion
 
 #region Signals
@@ -104,10 +110,9 @@ func _on_input_buffer_input_consumed(input: String) -> void:
 
 
 func _on_stomp_collider_body_entered(body: Node2D) -> void:
-	if not im_jumping:
-		return
-	
-	if body.is_in_group("enemies"):
-		if body.name == "Goomba":
-			body.stomp()
+	if body.is_in_group("regular-enemies"):
+		body.stomp()
+		body.desactive_hurt()
+		jump()
+	# TODO: reaction to "spiked" enemies.
 #endregion

@@ -17,11 +17,11 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	_detect_corner()
+	pass
 
 
 ## Detecting corner when jump. Emit signal when one raycast is colliding.
-func _detect_corner() -> void:
+func detect_corner() -> void:
 	var left_hit = ray_left.is_colliding()
 	var right_hit = ray_right.is_colliding()
 	

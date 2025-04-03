@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxdrem17ifiiv"]
+[gd_scene load_steps=9 format=3 uid="uid://bxdrem17ifiiv"]
 
 [ext_resource type="Texture2D" uid="uid://yiwqmp3hdr3h" path="res://icon.svg" id="1_lw871"]
 [ext_resource type="Script" uid="uid://68b8gvffaak5" path="res://game_objects/goomba.gd" id="1_u3880"]
+[ext_resource type="Texture2D" uid="uid://qghkyehe5nas" path="res://assets/art/particles/star_01.png" id="3_tc7ee"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u3880"]
 radius = 25.0
@@ -10,7 +11,24 @@ height = 128.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u3880"]
 size = Vector2(170, 51)
 
-[node name="Goomba" type="CharacterBody2D" groups=["enemies"]]
+[sub_resource type="Gradient" id="Gradient_tc7ee"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.403922)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_47e13"]
+gradient = SubResource("Gradient_tc7ee")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tc7ee"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 341.6
+initial_velocity_max = 481.82
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.8
+color_ramp = SubResource("GradientTexture1D_47e13")
+
+[node name="Goomba" type="CharacterBody2D" groups=["regular-enemies"]]
 collision_layer = 4
 collision_mask = 3
 floor_constant_speed = true
@@ -23,16 +41,24 @@ position = Vector2(0, 54)
 texture = ExtResource("1_lw871")
 offset = Vector2(0, -58)
 
-[node name="CollisionBox" type="CollisionShape2D" parent="."]
+[node name="CollisionBox" type="CollisionShape2D" parent="." groups=["regular-enemies"]]
 position = Vector2(0, 39)
 rotation = -1.57079
 shape = SubResource("CapsuleShape2D_u3880")
 
 [node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 27.5)
 shape = SubResource("RectangleShape2D_u3880")
 debug_color = Color(0.894118, 0.360784, 0.372549, 0.623529)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 6
+texture = ExtResource("3_tc7ee")
+lifetime = 0.5
+randomness = 0.32
+process_material = SubResource("ParticleProcessMaterial_tc7ee")
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

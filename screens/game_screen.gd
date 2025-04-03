@@ -24,6 +24,7 @@ func _ready() -> void:
 	# Connect player visible-notifier.
 	(player.get_node("VisibleOnScreenNotifier2D") as VisibleOnScreenNotifier2D) \
 			.screen_exited.connect(_on_player_exited_from_screen)
+	(player as Player).damaged.connect(_update_life_text)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -41,6 +42,9 @@ func _update_coin_text():
 	deb_labels["coin"].text = "Coins: " + str(coins)
 	AudioManager.play("res://assets/audio/sfx/coin.wav")
 
+
+func _update_life_text():
+	deb_labels["player_life"].text = "LIFE: "+ str((player as Player).life)
 
 func _on_player_exited_from_screen() -> void:
 	var screen_height = ProjectSettings.get("display/window/size/viewport_height")
