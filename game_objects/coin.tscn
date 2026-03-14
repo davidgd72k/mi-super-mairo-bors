@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2dxrfdove5r5"]
+[gd_scene format=3 uid="uid://c2dxrfdove5r5"]
 
 [ext_resource type="Script" uid="uid://mbfb5cfgflt6" path="res://game_objects/coin.gd" id="1_pebak"]
 [ext_resource type="Material" uid="uid://b3u0bw5lg45ck" path="res://materials/coin_shader_mat.tres" id="2_tklby"]
@@ -7,16 +7,16 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_pebak"]
 radius = 84.214
 
-[node name="Coin" type="Area2D"]
+[node name="Coin" type="Area2D" unique_id=413109387]
 collision_layer = 8
 script = ExtResource("1_pebak")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1950210794]
 texture_filter = 1
 material = ExtResource("2_tklby")
 texture = ExtResource("3_yo70f")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1552609848]
 shape = SubResource("CircleShape2D_pebak")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

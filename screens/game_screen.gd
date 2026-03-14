@@ -29,7 +29,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	deb_labels["data"].text = "GRAV_SPEED: " + str(player.velocity.y)
+	deb_labels["data"].text = "GRAV_SPEED: " + str(snapped(player.velocity.y, 0.001))
 	deb_labels["state"].text = "Current state: " + str(player.fsm.state.name)
 
 

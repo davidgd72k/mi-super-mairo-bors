@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=9 format=3 uid="uid://gbvlg1ey37as"]
+[gd_resource type="VisualShader" format=3 uid="uid://gbvlg1ey37as"]
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_mm87g"]
 input_name = "color"
@@ -35,52 +35,6 @@ op_type = 2
 operator = 2
 
 [resource]
-code = "shader_type canvas_item;
-render_mode blend_mix;
-
-uniform vec4 TexTint : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
-uniform vec4 GradTint : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
-uniform sampler2D GradientTex;
-
-
-
-void fragment() {
-// Input:2
-	vec4 n_out2p0 = COLOR;
-
-
-// ColorParameter:3
-	vec4 n_out3p0 = TexTint;
-
-
-// VectorOp:4
-	vec4 n_out4p0 = max(n_out2p0, n_out3p0);
-
-
-// ColorParameter:8
-	vec4 n_out8p0 = GradTint;
-
-
-	vec4 n_out6p0;
-// Texture2D:6
-	n_out6p0 = texture(GradientTex, UV);
-	float n_out6p4 = n_out6p0.a;
-
-
-// VectorOp:9
-	vec4 n_out9p0 = n_out8p0 * vec4(n_out6p4);
-
-
-// VectorOp:7
-	vec4 n_out7p0 = n_out4p0 + n_out9p0;
-
-
-// Output:0
-	COLOR.rgb = vec3(n_out7p0.xyz);
-
-
-}
-"
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(631.919, 251.5)

@@ -9,8 +9,9 @@ func enter(previous_state_path: String, data := {}) -> void:
 	
 	# Connect corner corrector to state.
 	corner_corrected = false
-	player.get_node("CornerCorrector").correction.connect(_corner_correction)
-	player.get_node("CornerCorrector").detect_corner()
+	var corner_corrector = player.get_node("CornerCorrector") as CornerCorrector
+	corner_corrector.correction.connect(_corner_correction)
+	corner_corrector.activate()
 
 
 func exit() -> void:

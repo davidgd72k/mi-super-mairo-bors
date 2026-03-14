@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bc5ienlfttcbd"]
+[gd_scene format=3 uid="uid://bc5ienlfttcbd"]
 
 [ext_resource type="Script" uid="uid://cv7s8tfyptr7g" path="res://game_objects/player.gd" id="1_a4hy7"]
 [ext_resource type="Texture2D" uid="uid://bkklxgkmd5e5m" path="res://assets/art/sprites/spr_sheet_gb_player.png" id="1_rpe43"]
@@ -160,6 +160,7 @@ animation = &"squashing_fall"
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_ojauy"]
 graph_offset = Vector2(-27.5811, 235.413)
+nodes/output/position = Vector2(592, 206)
 nodes/AddSquash/node = SubResource("AnimationNodeAdd2_pbirh")
 nodes/AddSquash/position = Vector2(385.881, 197.088)
 nodes/BlendWalking/node = SubResource("AnimationNodeBlend2_ghwos")
@@ -170,8 +171,7 @@ nodes/Moving/node = SubResource("AnimationNodeAnimation_ruxeo")
 nodes/Moving/position = Vector2(-220, 300)
 nodes/Squashing/node = SubResource("AnimationNodeAnimation_vp544")
 nodes/Squashing/position = Vector2(86, 383)
-nodes/output/position = Vector2(592, 206)
-node_connections = [&"AddSquash", 0, &"BlendWalking", &"AddSquash", 1, &"Squashing", &"BlendWalking", 0, &"Idle", &"BlendWalking", 1, &"Moving", &"output", 0, &"AddSquash"]
+node_connections = [&"output", 0, &"AddSquash", &"AddSquash", 0, &"BlendWalking", &"AddSquash", 1, &"Squashing", &"BlendWalking", 0, &"Idle", &"BlendWalking", 1, &"Moving"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xfs5t"]
 animation = &"jump"
@@ -203,85 +203,85 @@ height = 136.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbirh"]
 size = Vector2(114, 39)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1420000229]
 collision_mask = 30
 floor_constant_speed = true
 floor_snap_length = 32.0
 script = ExtResource("1_a4hy7")
+peak_time = 0.1
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1854777772]
 position = Vector2(0, 46)
 texture = ExtResource("1_rpe43")
 offset = Vector2(0, -74)
 hframes = 4
 vframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_pyg5a")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=388379661]
+libraries/ = SubResource("AnimationLibrary_pyg5a")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1561053652]
 deterministic = false
 tree_root = SubResource("AnimationNodeStateMachine_ruxeo")
 anim_player = NodePath("../AnimationPlayer")
 parameters/InGround/AddSquash/add_amount = 0.0
 parameters/InGround/BlendWalking/blend_amount = 0.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=416936448]
 position = Vector2(0, -1)
 shape = SubResource("CapsuleShape2D_a4hy7")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=1353657639 node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_7o085")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=53981646]
 script = ExtResource("4_pyg5a")
 
-[node name="Running" type="Node" parent="StateMachine"]
+[node name="Running" type="Node" parent="StateMachine" unique_id=1085461570]
 script = ExtResource("5_mq4jh")
 
-[node name="Jumping" type="Node" parent="StateMachine"]
+[node name="Jumping" type="Node" parent="StateMachine" unique_id=107858944]
 script = ExtResource("5_pyg5a")
 
-[node name="Falling" type="Node" parent="StateMachine"]
+[node name="Falling" type="Node" parent="StateMachine" unique_id=1174381691]
 script = ExtResource("7_jg8jt")
 
-[node name="HoldFall" type="Node" parent="StateMachine"]
+[node name="HoldFall" type="Node" parent="StateMachine" unique_id=63503067]
 script = ExtResource("8_7rdht")
 
-[node name="CoyoteTimer" type="Timer" parent="."]
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=50617157]
 
-[node name="InputBuffer" type="Node" parent="."]
+[node name="InputBuffer" type="Node" parent="." unique_id=546838972]
 script = ExtResource("9_xfs5t")
 
-[node name="BufferTimer" type="Timer" parent="InputBuffer"]
-wait_time = 0.1
+[node name="BufferTimer" type="Timer" parent="InputBuffer" unique_id=38471656]
+wait_time = 0.05
 
-[node name="CornerCorrector" type="Node2D" parent="."]
+[node name="CornerCorrector" type="Node2D" parent="." unique_id=1507482146]
 position = Vector2(0, -62)
 script = ExtResource("10_pbirh")
+correction_time = 0.1
 
-[node name="RayLeft" type="RayCast2D" parent="CornerCorrector"]
+[node name="RayLeft" type="RayCast2D" parent="CornerCorrector" unique_id=2041851952]
 position = Vector2(-32, 0)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -200)
 collision_mask = 2
 
-[node name="RayRight" type="RayCast2D" parent="CornerCorrector"]
+[node name="RayRight" type="RayCast2D" parent="CornerCorrector" unique_id=1437981103]
 position = Vector2(32, 0)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -200)
 collision_mask = 2
 
-[node name="StompCollider" type="Area2D" parent="."]
+[node name="StompCollider" type="Area2D" parent="." unique_id=1349913957]
 process_mode = 3
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StompCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StompCollider" unique_id=1550623426]
 position = Vector2(0, 71.5)
 shape = SubResource("RectangleShape2D_pbirh")
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=453478775]
 scale = Vector2(7.4, 7.7)
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

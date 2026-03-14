@@ -1,24 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://bmsrkmeyka3nv"]
+[gd_scene format=3 uid="uid://bmsrkmeyka3nv"]
 
 [ext_resource type="Script" uid="uid://tcrahr83r522" path="res://screens/game_screen.gd" id="1_30aos"]
 [ext_resource type="PackedScene" uid="uid://bc5ienlfttcbd" path="res://game_objects/player.tscn" id="2_rxj4p"]
 [ext_resource type="Script" uid="uid://cwfqvxhcy1xo1" path="res://scripts/controllers/basic_camera_controller.gd" id="3_rxj4p"]
 [ext_resource type="PackedScene" uid="uid://8kffwj1lwjj8" path="res://levels/level_test_a.tscn" id="4_30aos"]
-[ext_resource type="Shader" uid="uid://0x8756alrwjy" path="res://shaders/halftone_cmyk.gdshader" id="4_frmbi"]
 [ext_resource type="AudioStream" uid="uid://dcttvhffx6aos" path="res://assets/audio/music/bgm_level1.ogg" id="6_10oun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_10oun"]
-shader = ExtResource("4_frmbi")
-shader_parameter/radius_c = -50.0
-shader_parameter/radius_m = -1.55
-shader_parameter/radius_y = 5.15
-shader_parameter/radius_k = 1.2
-shader_parameter/frequency = 400.0
 
-[node name="GameScreen" type="Node2D"]
+[node name="GameScreen" type="Node2D" unique_id=360205466]
 script = ExtResource("1_30aos")
 
-[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("target")]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=811534685 node_paths=PackedStringArray("target")]
 position = Vector2(896, 407)
 zoom = Vector2(0.5, 0.5)
 limit_left = 0
@@ -36,7 +29,7 @@ editor_draw_drag_margin = true
 script = ExtResource("3_rxj4p")
 target = NodePath("../Player")
 
-[node name="Player" parent="." instance=ExtResource("2_rxj4p")]
+[node name="Player" parent="." unique_id=1163330961 instance=ExtResource("2_rxj4p")]
 position = Vector2(2150, 281)
 floor_stop_on_slope = false
 jump_height = 600.0
@@ -44,9 +37,9 @@ jump_time_to_peak = 0.6
 jump_time_to_descent = 0.3
 coyote_frames = 12
 
-[node name="DebUI" type="CanvasLayer" parent="."]
+[node name="DebUI" type="CanvasLayer" parent="." unique_id=1405434382]
 
-[node name="ShaderRect" type="ColorRect" parent="DebUI"]
+[node name="ShaderRect" type="ColorRect" parent="DebUI" unique_id=241267357]
 visible = false
 material = SubResource("ShaderMaterial_10oun")
 anchors_preset = 15
@@ -55,7 +48,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DataLabel" type="Label" parent="DebUI"]
+[node name="DataLabel" type="Label" parent="DebUI" unique_id=43253310]
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
@@ -63,7 +56,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "aaaaaaa"
 
-[node name="StateLabel" type="Label" parent="DebUI"]
+[node name="StateLabel" type="Label" parent="DebUI" unique_id=675139170]
 offset_top = 29.0
 offset_right = 40.0
 offset_bottom = 52.0
@@ -72,7 +65,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
 text = "AA"
 
-[node name="CoinLabel" type="Label" parent="DebUI"]
+[node name="CoinLabel" type="Label" parent="DebUI" unique_id=157323719]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -88,7 +81,7 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 5
 text = "MONEDAS"
 
-[node name="LifeLabel" type="Label" parent="DebUI"]
+[node name="LifeLabel" type="Label" parent="DebUI" unique_id=1460316032]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -100,9 +93,10 @@ text = "LIFE: 3"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CurrentLevel" parent="." instance=ExtResource("4_30aos")]
+[node name="CurrentLevel" parent="." unique_id=1372543373 instance=ExtResource("4_30aos")]
+metadata/_edit_lock_ = true
 
-[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=2033384745]
 stream = ExtResource("6_10oun")
 volume_db = -10.0
 parameters/looping = true
